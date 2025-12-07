@@ -1,10 +1,11 @@
+use crate::generated::{CellId, EntityId, ItemId, PropId};
 use std::mem;
-#[derive(Debug)]
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(i32)]
 pub enum MapType {
     MapNone = 0,
-    MapSan = -1,
-    MapScr = 1,
+    MapYrd = 1,
     MapMat = 2,
     MapFac = 3,
     MapRes = 4,
@@ -14,31 +15,33 @@ pub enum MapType {
     MapExi = 8,
     MapSto = 9,
     MapRec = 10,
-    MapWas = 11,
-    MapGar = 12,
-    MapDsf = 13,
-    MapSub = 14,
-    MapLow = 15,
-    MapUpp = 16,
-    MapPro = 17,
-    MapDee = 18,
-    MapZio = 19,
-    MapDat = 20,
-    MapZhi = 21,
-    MapWar = 22,
-    MapExt = 23,
-    MapCet = 24,
-    MapArc = 25,
-    MapHub = 26,
-    MapArm = 27,
-    MapLab = 28,
-    MapQua = 29,
-    MapTes = 30,
-    MapSec = 31,
-    MapCom = 32,
-    MapAc0 = 33,
-    MapLai = 34,
-    MapTow = 35,
+    MapScr = 11,
+    MapWas = 12,
+    MapGar = 13,
+    MapDsf = 14,
+    MapSub = 16,
+    MapLow = 17,
+    MapUpp = 18,
+    MapPro = 19,
+    MapDee = 20,
+    MapZio = 21,
+    MapDat = 22,
+    MapZhi = 23,
+    MapWar = 24,
+    MapExt = 25,
+    MapCet = 26,
+    MapArc = 27,
+    MapHub = 28,
+    MapArm = 29,
+    MapLab = 30,
+    MapQua = 31,
+    MapTes = 32,
+    MapSec = 33,
+    MapFrg = 34,
+    MapCom = 35,
+    MapAc0 = 36,
+    MapLai = 37,
+    MapTow = 38,
     MapW00 = 1000,
     MapW01 = 1001,
     MapW02 = 1002,
@@ -48,6 +51,7 @@ pub enum MapType {
     MapW06 = 1006,
     MapW07 = 1007,
     MapW08 = 1008,
+    MapW09 = 1009,
 }
 
 pub struct InvalidMapType(i32);
@@ -58,8 +62,7 @@ impl TryFrom<i32> for MapType {
     fn try_from(value: i32) -> Result<Self, Self::Error> {
         match value {
             0 => Ok(Self::MapNone),
-            -1 => Ok(Self::MapSan),
-            1 => Ok(Self::MapScr),
+            1 => Ok(Self::MapYrd),
             2 => Ok(Self::MapMat),
             3 => Ok(Self::MapFac),
             4 => Ok(Self::MapRes),
@@ -69,31 +72,33 @@ impl TryFrom<i32> for MapType {
             8 => Ok(Self::MapExi),
             9 => Ok(Self::MapSto),
             10 => Ok(Self::MapRec),
-            11 => Ok(Self::MapWas),
-            12 => Ok(Self::MapGar),
-            13 => Ok(Self::MapDsf),
-            14 => Ok(Self::MapSub),
-            15 => Ok(Self::MapLow),
-            16 => Ok(Self::MapUpp),
-            17 => Ok(Self::MapPro),
-            18 => Ok(Self::MapDee),
-            19 => Ok(Self::MapZio),
-            20 => Ok(Self::MapDat),
-            21 => Ok(Self::MapZhi),
-            22 => Ok(Self::MapWar),
-            23 => Ok(Self::MapExt),
-            24 => Ok(Self::MapCet),
-            25 => Ok(Self::MapArc),
-            26 => Ok(Self::MapHub),
-            27 => Ok(Self::MapArm),
-            28 => Ok(Self::MapLab),
-            29 => Ok(Self::MapQua),
-            30 => Ok(Self::MapTes),
-            31 => Ok(Self::MapSec),
-            32 => Ok(Self::MapCom),
-            33 => Ok(Self::MapAc0),
-            34 => Ok(Self::MapLai),
-            35 => Ok(Self::MapTow),
+            11 => Ok(Self::MapScr),
+            12 => Ok(Self::MapWas),
+            13 => Ok(Self::MapGar),
+            14 => Ok(Self::MapDsf),
+            15 => Ok(Self::MapSub),
+            16 => Ok(Self::MapLow),
+            17 => Ok(Self::MapUpp),
+            18 => Ok(Self::MapPro),
+            19 => Ok(Self::MapDee),
+            20 => Ok(Self::MapZio),
+            21 => Ok(Self::MapDat),
+            22 => Ok(Self::MapZhi),
+            23 => Ok(Self::MapWar),
+            24 => Ok(Self::MapExt),
+            25 => Ok(Self::MapCet),
+            26 => Ok(Self::MapArc),
+            27 => Ok(Self::MapHub),
+            28 => Ok(Self::MapArm),
+            29 => Ok(Self::MapLab),
+            30 => Ok(Self::MapQua),
+            31 => Ok(Self::MapTes),
+            32 => Ok(Self::MapSec),
+            33 => Ok(Self::MapFrg),
+            34 => Ok(Self::MapCom),
+            35 => Ok(Self::MapAc0),
+            36 => Ok(Self::MapLai),
+            37 => Ok(Self::MapTow),
             1000 => Ok(Self::MapW00),
             1001 => Ok(Self::MapW01),
             1002 => Ok(Self::MapW02),
@@ -103,6 +108,7 @@ impl TryFrom<i32> for MapType {
             1006 => Ok(Self::MapW06),
             1007 => Ok(Self::MapW07),
             1008 => Ok(Self::MapW08),
+            1009 => Ok(Self::MapW09),
             _ => Err(InvalidMapType(value)),
         }
     }
@@ -127,7 +133,7 @@ impl From<&Vec<u8>> for LuigiMachineHacking {
 #[repr(C)]
 #[derive(Debug)]
 pub struct LuigiProp {
-    pub id: i32,
+    pub id: PropId,
     pub interactive_piece: bool,
 }
 impl From<&Vec<u8>> for LuigiProp {
@@ -141,9 +147,8 @@ impl From<&Vec<u8>> for LuigiProp {
 #[repr(C)]
 #[derive(Debug)]
 pub struct LuigiItem {
-    pub id: i32,
+    pub id: ItemId,
     pub integrity: i32,
-    pub equipped: bool,
 }
 impl From<&Vec<u8>> for LuigiItem {
     fn from(slice: &Vec<u8>) -> Self {
@@ -156,7 +161,7 @@ impl From<&Vec<u8>> for LuigiItem {
 #[repr(C)]
 #[derive(Debug)]
 pub struct LuigiEntity {
-    pub id: i32,
+    pub id: EntityId,
     pub integrity: i32,
     pub relation: i32,
     pub active_state: i32,
@@ -182,7 +187,7 @@ impl From<&Vec<u8>> for LuigiEntity {
 pub struct LuigiTile {
     pub last_action: i32,
     pub last_fov: i32,
-    pub cell: i32,
+    pub cell: CellId,
     pub door_open: bool,
     pub prop: u32,
     pub entity: u32,

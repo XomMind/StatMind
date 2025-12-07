@@ -1,0 +1,3 @@
+[submodule "cogmind-scoresheet-prerelease"]
+	path = cogmind-scoresheet-prerelease
+	url = https://github.com/Kyzrati/cogmind-scoresheet-prerelease

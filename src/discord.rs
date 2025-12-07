@@ -9,10 +9,7 @@ pub struct PresenceProvider {
 
 impl PresenceProvider {
     pub fn try_init() -> anyhow::Result<Self> {
-        let mut client = DiscordIpcClient::new("914720093701832724").map_err(|e| {
-            error!("{}", e);
-            anyhow!("Failed to init client!")
-        })?;
+        let mut client = DiscordIpcClient::new("914720093701832724");
         client.connect().map_err(|e| {
             error!("{}", e);
             anyhow!("Failed to connect to RPC endpoint!")

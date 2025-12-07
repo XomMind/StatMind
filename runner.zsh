@@ -1,3 +1,3 @@
 #!/usr/bin/env zsh
-codesign --entitlements entitlements.xml -fs 44EB90D60071EB66D745AF5BFE4AF92EE72D6389 "$1"
+codesign --entitlements entitlements.xml -fs 9E4DDC0A250D30CB8BEB148C8F5EDC283610D680 "$1"
 exec "$1"

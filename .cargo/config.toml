@@ -1,2 +1,2 @@
 [target.aarch64-apple-darwin]
-runner = "/Users/isaac/sources/statmind/runner.zsh"
+runner = "./runner.zsh"

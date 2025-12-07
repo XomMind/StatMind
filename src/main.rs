@@ -15,7 +15,7 @@ use read_process_memory::{Pid, ProcessHandle};
 #[cfg(target_os = "macos")]
 use security_framework::authorization::{Authorization, AuthorizationItemSetBuilder, Flags};
 use std::{mem, thread, time};
-use sysinfo::{PidExt, ProcessExt, System, SystemExt};
+use sysinfo::{ProcessesToUpdate, System};
 
 fn main() -> anyhow::Result<()> {
     // Init logger
@@ -30,23 +30,35 @@ fn main() -> anyhow::Result<()> {
 
     // Create a new System object and refresh process list
     let mut sys = System::new_all();
-    sys.refresh_processes();
+    sys.refresh_processes(ProcessesToUpdate::All, true);
 
     // Find the process
     let native_process = sys
         .processes()
         .iter()
         .find(|(_, proc)| {
-            proc.name().to_lowercase().contains("cogmind.exe")
-                && proc.cmd().contains(&"-luigiAi".to_owned())
+            proc.name()
+                .to_string_lossy()
+                .to_lowercase()
+                .contains("cogmind.exe")
+                && proc
+                    .cmd()
+                    .iter()
+                    .any(|arg| arg.to_string_lossy() == "-luigiAi")
         })
         .map(|(_, proc)| proc);
     let wine_process = sys
         .processes()
         .iter()
         .find(|(_, proc)| {
-            proc.name().to_lowercase().contains("wine")
-                && proc.cmd().contains(&"-luigiAi".to_owned())
+            proc.name()
+                .to_string_lossy()
+                .to_lowercase()
+                .contains("wine")
+                && proc
+                    .cmd()
+                    .iter()
+                    .any(|arg| arg.to_string_lossy() == "-luigiAi")
         })
         .map(|(_, proc)| proc);
     let process = native_process.or(wine_process);
@@ -85,8 +97,7 @@ fn main() -> anyhow::Result<()> {
 fn get_presence(depth: i32, map_type: MapType) -> String {
     let map = match map_type {
         MapType::MapNone => "None",
-        MapType::MapSan => "Sandbox",
-        MapType::MapScr => "Junkyard",
+        MapType::MapYrd => "Scrapyard",
         MapType::MapMat => "Materials",
         MapType::MapFac => "Factory",
         MapType::MapRes => "Research",
@@ -96,13 +107,11 @@ fn get_presence(depth: i32, map_type: MapType) -> String {
         MapType::MapExi => "Exiles",
         MapType::MapSto => "Storage",
         MapType::MapRec => "Recycling",
-        MapType::MapWas => "Wastes",
+        MapType::MapWas => "Waste",
         MapType::MapGar => "Garrison",
-        MapType::MapDsf => "DSF",
-        MapType::MapSub => "Subcaves",
         MapType::MapLow => "Lower Caves",
         MapType::MapUpp => "Upper Caves",
-        MapType::MapPro => "Proxy Caves",
+        MapType::MapPro => "Proximity Caves",
         MapType::MapDee => "Deep Caves",
         MapType::MapZio => "Zion",
         MapType::MapDat => "Data Miner",
@@ -118,18 +127,23 @@ fn get_presence(depth: i32, map_type: MapType) -> String {
         MapType::MapTes => "Testing",
         MapType::MapSec => "Section 7",
         MapType::MapCom => "Command",
-        MapType::MapAc0 => "Access 0",
-        MapType::MapLai => "Abomination Lair",
+        MapType::MapAc0 => "Access_0",
+        MapType::MapLai => "Lair",
         MapType::MapTow => "Wartown",
-        MapType::MapW00 => "w0",
-        MapType::MapW01 => "w1",
-        MapType::MapW02 => "w2",
-        MapType::MapW03 => "w3",
-        MapType::MapW04 => "w4",
-        MapType::MapW05 => "w5",
-        MapType::MapW06 => "w6",
-        MapType::MapW07 => "w7",
-        MapType::MapW08 => "w8",
+        MapType::MapDsf => "DSF",
+        MapType::MapSub => "Subcaves",
+        MapType::MapScr => "Scraptown",
+        MapType::MapFrg => "Protoforge",
+        MapType::MapW00 => "To Epsilon Eridani",
+        MapType::MapW01 => "0b11 Command",
+        MapType::MapW02 => "To Fleet Rendezvous",
+        MapType::MapW03 => "Tau Ceti IV Orbit",
+        MapType::MapW04 => "0b10 Command",
+        MapType::MapW05 => "Subspace",
+        MapType::MapW06 => "Near Former Tau Ceti IV",
+        MapType::MapW07 => "Free Derelict Territories",
+        MapType::MapW08 => "By MAIN.C's Side",
+        MapType::MapW09 => "0bPrime",
     };
 
     format!("Current map: {}/{}", depth, map)
