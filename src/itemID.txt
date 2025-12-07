@@ -3,1102 +3,1306 @@
    2 Derelict Log
    3 Schematic Archive
    4 Imprinter Data Core
-   5 A2 Data Core
-   6 A7 Data Core
-   7 MAIN.C Data Core
-   8 Architect Data Core
-   9 Scrap
-  10 Protomatter
-  11 Ion Engine
-  12 Lgt. Ion Engine
-  13 Backup Power I
-  14 Imp. Ion Engine
-  15 Rnf. Ion Engine
-  16 Hvy. Ion Engine
-  17 Cld. Ion Engine
-  18 Sub. Power Source
-  19 Deuterium Engine
-  20 Lgt. Deuterium Engine
-  21 Backup Power III
-  22 Nuclear Core
-  23 Lgt. Nuclear Core
-  24 Imp. Deuterium Engine
-  25 Rnf. Deuterium Engine
-  26 Hyb. Deuterium Engine
-  27 Hvy. Deuterium Engine
-  28 Cld. Deuterium Engine
-  29 Enh. Nuclear Core
-  30 Mic. Nuclear Core
-  31 Mak. Power Source
-  32 Angular Momentum Engine
-  33 Lgt. Angular Momentum Engine
-  34 F-cell Engine
-  35 Fission Core
-  36 Lgt. Fission Core
-  37 Hyb. Fission Core
-  38 Fusion Compressor
-  39 Cold Fusion Reactor
-  40 Neutrino Core
-  41 Lgt. Neutrino Core
-  42 Rnf. Fission Core
-  43 Enh. Fission Core
-  44 Cld. Fission Core
-  45 Mic. Fission Core
-  46 Fusion Reactor
-  47 Antimatter Reactor
-  48 Lgt. Antimatter Reactor
-  49 Rnf. Antimatter Reactor
-  50 Hyb. Antimatter Reactor
-  51 Backup Power VII
-  52 Hvy. Antimatter Reactor
-  53 Mni. Fusion Reactor
-  54 Imp. Fusion Compressor
-  55 Mic. Neutrino Core
-  56 Zio. Light DM Reactor
-  57 Zio. Heavy DM Reactor
-  58 Particle Reactor
-  59 Lgt. Particle Reactor
-  60 Mic. Antimatter Reactor
-  61 Com. Particle Reactor
-  62 Cld. Antimatter Reactor
-  63 Graviton Reactor
-  64 Asb. Flux Generator
-  65 Quantum Reactor
-  66 Lgt. Quantum Reactor
-  67 Rnf. Quantum Reactor
-  68 Imp. Quantum Reactor
-  69 Zero-point Reactor
-  70 Vortex Chain Reactor
-  71 Singularity Reactor
-  72 Matter Drive
-  73 Meta Core
-  74 SE_PO1
-  75 Lgt. Treads
-  76 Imp. Treads
-  77 Spk. Treads
-  78 Arm. Treads
-  79 Adv. Treads
-  80 Med. Treads
-  81 Imp. Medium Treads
-  82 Spk. Medium Treads
-  83 Arm. Medium Treads
-  84 Hvy. Treads
-  85 Adv. Medium Treads
-  86 Enh. Armored Medium Treads
-  87 Imp. Heavy Treads
-  88 Hvy. Siege Treads
-  89 Spk. Heavy Treads
-  90 Biometal Medium Treads
-  91 Arm. Heavy Treads
-  92 Adv. Heavy Treads
-  93 Imp. Heavy Siege Treads
-  94 Centrium Heavy Treads
-  95 Megatreads
-  96 Biometal Heavy Treads
-  97 Exp. Biometal Heavy Treads
-  98 Enh. Armored Heavy Treads
-  99 Adv. Heavy Siege Treads
- 100 Hdn. Centrium Heavy Treads
- 101 Exp. Biometal Medium Treads
- 102 Aluminum Leg
- 103 Imp. Aluminum Leg
- 104 Carbon-fiber Leg
- 105 Titanium Leg
- 106 VSS Leg
- 107 Imp. Carbon-fiber Leg
- 108 Imp. Titanium Leg
- 109 Lgt. Armored Exoskeleton
- 110 Mak. Leg
- 111 Flexi-carbon Leg
- 112 Arm. Leg
- 113 Imp. VSS Leg
- 114 Zio. Composite Leg I
- 115 Med. Armored Exoskeleton
- 116 Enh. Flexi-carbon Leg
- 117 Enh. Armored Leg
- 118 Arachnoskeleton
- 119 Myomer Leg
- 120 Adv. VSS Leg
- 121 Adv. Myomer Leg
- 122 Exp. Flexi-carbon Leg
- 123 Zio. Composite Leg II
- 124 Cargo Legs
- 125 Etherial Tendrils
- 126 Biometal Leg
- 127 Hvy. Armored Exoskeleton
- 128 Enh. Biometal Leg
- 129 Exp. Myomer Leg
- 130 Tripod Weapons Platform
- 131 T.R.O.L.L. Exoskeleton
- 132 Asb. Alloy Leg
- 133 Centrium Leg
- 134 Hdn. Centrium Leg
- 135 Exp. Biometal Leg
- 136 Zio. Supercomposite Leg
- 137 Potential Leg
- 138 Myomer Exoskeleton
- 139 Sigix Exoskeleton
- 140 SE_PR1
- 141 Wheel
- 142 Com. Wheel
- 143 Arm. Wheel
- 144 Sub. Monowheel
- 145 Arm. Huge Wheel
- 146 Centrium Wheel
- 147 Hdn. Centrium Wheel
- 148 Hover Unit
- 149 Backup Propulsion I
- 150 Imp. Hover Unit
- 151 Airjet
- 152 Aerolev Unit
- 153 Asb. Hover Unit
- 154 Backup Propulsion III
- 155 Gravmag System
- 156 Asb. Hover System
- 157 Imp. Airjet
- 158 Cld. Airjet
- 159 Imp. Gravmag System
- 160 Cld. Aerolev Unit
- 161 Cmb. Airjet
- 162 Gravmag Array
- 163 Mak. Hover Unit
- 164 Zio. Glidesys I
- 165 Antigrav System
- 166 Gyrokinetic Inverter
- 167 Linear Gravjet
- 168 Cld. Gravmag System
- 169 Cmb. Gravmag System
- 170 Imp. Antigrav System
- 171 Imp. Gyrokinetic Inverter
- 172 Imp. Linear Gravjet
- 173 Backup Propulsion VII
- 174 Zio. Glidesys II
- 175 Cld. Antigrav System
- 176 Cmb. Antigrav System
- 177 Antigrav Array
- 178 Exp. Gyrokinetic Inverter
- 179 Cld. Linear Gravjet
- 180 Cmb. Linear Gravjet
- 181 Flight Unit
- 182 VTOL Module
- 183 Imp. Flight Unit
- 184 Cesium-ion Thruster
- 185 Surge Thruster
- 186 Imp. VTOL Module
- 187 Xenon Bombardment Thruster
- 188 Imp. Cesium-ion Thruster
- 189 Cld. VTOL Module
- 190 Mak. Flight Unit
- 191 Nuclear Pulse Thruster
- 192 Imp. Surge Thruster
- 193 Mni. Nuclear Pulse Thruster
- 194 Cld. Cesium-ion Thruster
- 195 Biomechanical Wings
- 196 Field Propulsion Drive
- 197 Cld. Nuclear Pulse Thruster
- 198 Exp. Cesium-ion Thruster
- 199 Nuclear Pulse Array
- 200 Mak. Microthruster
- 201 Impulse Thruster
- 202 Adv. Surge Thruster
- 203 Cld. Field Propulsion Drive
- 204 Field Propulsion Array
- 205 Diametric Drive
- 206 Flying Fortress v7
- 207 T-thruster
- 208 Integrated Tracker Drive
- 209 Etherial Propulsion
- 210 Q-thruster
- 211 Electron Diverter
- 212 Imp. Diametric Drive
- 213 Cld. Impulse Thruster
- 214 Impulse Thruster Array
- 215 Flightbrick
- 216 Imp. Q-thruster
- 217 Cld. Q-thruster
- 218 Exp. Q-thruster
- 219 Scrap Engine
- 220 Arm. Scrap Engine
- 221 Desublimator
- 222 Power Amplifier
- 223 Adv. Power Amplifier
- 224 Exp. Power Amplifier
- 225 Thermal Generator
- 226 Imp. Thermal Generator
- 227 Adv. Thermal Generator
- 228 Exp. Thermal Generator
- 229 Cryofiber Web
- 230 Imp. Cryofiber Web
- 231 Adv. Cryofiber Web
- 232 Exp. Cryofiber Web
- 233 Heat Sink
- 234 Imp. Heat Sink
- 235 Adv. Heat Sink
- 236 Exp. Heat Sink
- 237 Cooling System
- 238 Imp. Cooling System
- 239 Adv. Cooling System
- 240 Exp. Cooling System
- 241 Coolant Network
- 242 Asb. Nanovents
- 243 2N-1CE's Frost Array
- 244 Disposable Heat Sink
- 245 Coolant Injector
- 246 Imp. Coolant Injector
- 247 Adv. Coolant Injector
- 248 Exp. Coolant Injector
- 249 Sml. Storage Unit
- 250 Med. Storage Unit
- 251 Lrg. Storage Unit
- 252 Hcp. Storage Unit
- 253 Huge Storage Unit
- 254 Cargo Storage Unit
- 255 Humpback
- 256 Lightpack 2.0
- 257 Sml. Battery
- 258 Med. Battery
- 259 Lrg. Battery
- 260 Hcp. Battery
- 261 Com. Battery
- 262 Energy Well
- 263 Imp. Energy Well
- 264 Adv. Energy Well
- 265 Exp. Energy Well
- 266 Zio. Biocell
- 267 Asb. Biocell Array
- 268 Zio. Biocell Array
- 269 Superbattery
- 270 Sml. Matter Pod
- 271 Med. Matter Pod
- 272 Lrg. Matter Pod
- 273 Hcp. Matter Pod
- 274 Com. Matter Pod
- 275 Matter Compressor
- 276 Imp. Matter Compressor
- 277 Adv. Matter Compressor
- 278 Exp. Matter Compressor
- 279 YI-UF0's Bottomless Matter Pit
- 280 Weight Redist. System
- 281 Adv. Weight Redist. System
- 282 Gravity Neutralizer
- 283 Adv. Gravity Neutralizer
- 284 Quantum Shading Machine
- 285 Asb. Suspension Frame
- 286 Adv. Quantum Shading Machine
- 287 Asb. Metafiber Network
- 288 Zio. Metafield Generator
- 289 ST Field Compressor
- 290 Structural Scanner
- 291 Trap Scanner
- 292 Imp. Trap Scanner
- 293 Mak. Trap Scanner
- 294 Adv. Trap Scanner
- 295 Machine Analyzer
- 296 Triangulator
- 297 Visual Processing Unit
- 298 Sub. Optics
- 299 Adv. Visual Processing Unit
- 300 Enh. Optical Array
- 301 Exp. Optical Array
- 302 Spectral Analyzer
- 303 Sensor Array
- 304 Imp. Sensor Array
- 305 Adv. Sensor Array
- 306 Lrn. Sensor Array
- 307 Mak. Sensor Array
- 308 Exp. Sensor Array
- 309 Signal Interpreter
- 310 Imp. Signal Interpreter
- 311 Adv. Signal Interpreter
- 312 Exp. Signal Interpreter
- 313 Active Sensor Suite
- 314 Terrain Scanner
- 315 Imp. Terrain Scanner
- 316 Adv. Terrain Scanner
- 317 Mak. Terrain Scanner
- 318 Lrn. Terrain Scanner
- 319 Exp. Terrain Scanner
- 320 Surveybot 24 Scanner
- 321 Terrain Scan Processor
- 322 Imp. Terrain Scan Processor
- 323 Mak. Terrain Scan Processor
- 324 Adv. Terrain Scan Processor
- 325 Exp. Terrain Scan Processor
- 326 Surveybot 24 Chip
- 327 Seismic Detector
- 328 Transport Network Coupler
- 329 Modified TNC
- 330 Encrypted Comm Array
- 331 0b10 Decoder Chip [Generic]
- 332 0b10 Decoder Chip [Looter]
- 333 0b10 Decoder Chip [Scout]
- 334 0b10 Decoder Chip [Skirmisher]
- 335 0b10 Alert Chip
- 336 Salvage Targeting Computer
- 337 Imp. Salvage Targeting Computer
- 338 Mak. Salvage Targeting Computer
- 339 Adv. Salvage Targeting Computer
- 340 Asb. Combat Suite
- 341 Targeting Computer
- 342 Imp. Targeting Computer
- 343 Adv. Targeting Computer
- 344 Exp. Targeting Computer
- 345 Multitargeting Array
- 346 Tactical Coordination Suite
- 347 Melee Analysis Suite
- 348 Imp. Melee Analysis Suite
- 349 Adv. Melee Analysis Suite
- 350 Exp. Melee Analysis Suite
- 351 Launcher Guidance Computer
- 352 Imp. Launcher Guidance Computer
- 353 Adv. Launcher Guidance Computer
- 354 Weapon Mount
- 355 Target Analyzer
- 356 Imp. Target Analyzer
- 357 Adv. Target Analyzer
- 358 Exp. Target Analyzer
- 359 Core Analyzer
- 360 Exp. Core Analyzer
- 361 Armor Integrity Analyzer
- 362 Imp. Armor Integrity Analyzer
- 363 Exp. Armor Integrity Analyzer
- 364 Recoil Stabilizer
- 365 Recoil Nullifier
- 366 Matter Filter
- 367 Prc. Matter Filter
- 368 Energy Filter
- 369 Prc. Energy Filter
- 370 Particle Charger
- 371 Imp. Particle Charger
- 372 Adv. Particle Charger
- 373 Particle Accelerator
- 374 Imp. Particle Accelerator
- 375 Adv. Particle Accelerator
- 376 Kinecellerator
- 377 Imp. Kinecellerator
- 378 Adv. Kinecellerator
- 379 Heavy Servo Lattice
- 380 VL-GR5's Timing Chip
- 381 Launcher Loader
- 382 Quantum Capacitor
- 383 Weapon Cycler
- 384 Imp. Weapon Cycler
- 385 Adv. Weapon Cycler
- 386 Exp. Weapon Cycler
- 387 Microactuators
- 388 Nanoactuators
- 389 Femtoactuators
- 390 Actuator Array
- 391 Imp. Actuator Array
- 392 Adv. Actuator Array
- 393 Exp. Actuator Array
- 394 Force Booster
- 395 Imp. Force Booster
- 396 Adv. Force Booster
- 397 Stasis Canceller
- 398 Transmission Jammer
- 399 Mak. Transmission Jammer
- 400 Imp. Transmission Jammer
- 401 Adv. Transmission Jammer
- 402 Exp. Transmission Jammer
- 403 ECM Suite
- 404 Mak. ECM Suite
- 405 Adv. ECM Suite
- 406 Exp. ECM Suite
- 407 Active Sensor Spoofer
- 408 Reaction Control System
- 409 Imp. Reaction Control System
- 410 Adv. Reaction Control System
- 411 Exp. Reaction Control System
- 412 Phase Shifter
- 413 Imp. Phase Shifter
- 414 Adv. Phase Shifter
- 415 Exp. Phase Shifter
- 416 Cloaking Device
- 417 Mak. Cloaking Device
- 418 Imp. Cloaking Device
- 419 Adv. Cloaking Device
- 420 Exp. Cloaking Device
- 421 Cloak of Protection
- 422 5H-AD0's Cloak
- 423 Core Shielding
- 424 Imp. Core Shielding
- 425 Exp. Core Shielding
- 426 Power Shielding
- 427 Imp. Power Shielding
- 428 Exp. Power Shielding
- 429 Propulsion Shielding
- 430 Imp. Propulsion Shielding
- 431 Exp. Propulsion Shielding
- 432 Utility Shielding
- 433 Imp. Utility Shielding
- 434 Exp. Utility Shielding
- 435 Weapon Shielding
- 436 Imp. Weapon Shielding
- 437 Exp. Weapon Shielding
- 438 Zio. Weapon Casing
- 439 Backup Plating I
- 440 Backup Plating III
- 441 Backup Plating VII
- 442 Lgt. Armor Plating
- 443 Med. Armor Plating
- 444 Hvy. Armor Plating
- 445 Zio. Light Carapace
- 446 Zio. Heavy Carapace
- 447 Hrd. Light Armor Plating
- 448 Hrd. Medium Armor Plating
- 449 Hrd. Heavy Armor Plating
- 450 Imp. Light Armor Plating
- 451 Imp. Medium Armor Plating
- 452 Imp. Heavy Armor Plating
- 453 Mak. Light Armor Plating
- 454 Lyr. Light Armor Plating
- 455 Lyr. Medium Armor Plating
- 456 Lyr. Heavy Armor Plating
- 457 Gun Armor
- 458 Centrium Light Armor Plating
- 459 Centrium Medium Armor Plating
- 460 Centrium Heavy Armor Plating
- 461 Centrium Linked Plating
- 462 Reactive Plating
- 463 Med. Reactive Plating
- 464 Mak. Kinetic Plating
- 465 Hvy. Reactive Plating
- 466 Reflective Plating
- 467 Med. Reflective Plating
- 468 Mak. Thermal Plating
- 469 Hvy. Reflective Plating
- 470 8R-AWN's Armor/TH
- 471 8R-AWN's Armor/EX
- 472 Insulated Plating
- 473 Med. Insulated Plating
- 474 Hvy. Insulated Plating
- 475 Damper Plating
- 476 Zio. Shade Carapace
- 477 Zio. Shade Armor
- 478 Asb. Alloy Armor
- 479 Mak. Ablative Armor
- 480 Active Cooling Armor
- 481 Scrap Shield
- 482 Powered Armor
- 483 Imp. Powered Armor
- 484 Adv. Powered Armor
- 485 Exp. Powered Armor
- 486 1C-UTU's Buckler
- 487 Lgt. Regenerative Plating
- 488 Med. Regenerative Plating
- 489 Hvy. Regenerative Plating
- 490 SHELL Armor
- 491 Phase Armor
- 492 Graphene Brace
- 493 Focal Shield
- 494 Imp. Focal Shield
- 495 Adv. Focal Shield
- 496 Exp. Focal Shield
- 497 Thermal Shield
- 498 Imp. Thermal Shield
- 499 Adv. Thermal Shield
- 500 Exp. Thermal Shield
- 501 Thermal Barrier
- 502 Beam Splitter
- 503 Thermal Defense Suite
- 504 Imp. Thermal Defense Suite
- 505 Adv. Thermal Defense Suite
- 506 Exp. Thermal Defense Suite
- 507 Shock Absorption System
- 508 Imp. Shock Absorption System
- 509 Exp. Shock Absorption System
- 510 EM Disruption Field
- 511 Adv. EM Disruption Field
- 512 Exp. EM Disruption Field
- 513 ME-RLN's Chromatic Screen
- 514 Hardlight Generator
- 515 Imp. Hardlight Generator
- 516 Adv. Hardlight Generator
- 517 Exp. Hardlight Generator
- 518 Shield Generator
- 519 Imp. Shield Generator
- 520 Adv. Shield Generator
- 521 Exp. Shield Generator
- 522 Force Field
- 523 Imp. Force Field
- 524 Adv. Force Field
- 525 Exp. Force Field
- 526 7V-RTL's Ultimate Field
- 527 Vortex Field Projector
- 528 Remote Shield
- 529 Imp. Remote Shield
- 530 Adv. Remote Shield
- 531 Remote Force Field
- 532 Imp. Remote Force Field
- 533 Energy Mantle
- 534 Imp. Energy Mantle
- 535 AEGIS Remote Shield
- 536 Phase Redirector
- 537 Point Defense System
- 538 Point Defense Array
- 539 Antimissile System
- 540 EX Chip 1
- 541 Hacking Suite
- 542 Mak. Hacking Suite
- 543 Imp. Hacking Suite
- 544 Adv. Hacking Suite
- 545 Exp. Hacking Suite
- 546 System Mapper
- 547 Deep Network Scanner
- 548 Architect God Chip A
- 549 EX Chip 2
- 550 System Shield
- 551 Mak. System Shield
- 552 Imp. System Shield
- 553 Adv. System Shield
- 554 Exp. System Shield
- 555 Ghost Barrier
- 556 Quantum Router
- 557 Architect God Chip D
- 558 Authchip [R/NC]
- 559 Authchip [R/Combat]
- 560 Authchip [Power]
- 561 Authchip [Propulsion]
- 562 Authchip [Device]
- 563 Authchip [Storage]
- 564 Authchip [Processor]
- 565 Authchip [Armor]
- 566 Authchip [Weapon]
- 567 Relay Coupler [NC]
- 568 Relay Coupler [C]
- 569 Relay Coupler [Swarmer]
- 570 Relay Coupler [Cutter]
- 571 Relay Coupler [Grunt]
- 572 Relay Coupler [Brawler]
- 573 Relay Coupler [Duelist]
- 574 Relay Coupler [Sentry]
- 575 Relay Coupler [Demolisher]
- 576 Relay Coupler [Specialist]
- 577 Relay Coupler [Hunter]
- 578 Relay Coupler [Heavy]
- 579 Relay Coupler [Behemoth]
- 580 Relay Coupler [Programmer]
- 581 Relay Coupler [Proto]
- 582 Skeleton Box
- 583 01-MTF's Autohacker
- 584 Component Analysis Suite
- 585 Imp. Component Analysis Suite
- 586 Adv. Component Analysis Suite
- 587 Dynamic Insulation System
- 588 Imp. Dynamic Insulation System
- 589 Adv. Dynamic Insulation System
- 590 System Guard
- 591 Imp. System Guard
- 592 Exp. System Guard
- 593 Corruption Screen
- 594 Imp. Corruption Screen
- 595 Adv. Corruption Screen
- 596 System Restoration Module
- 597 Mak. System Restoration Module
- 598 Imp. System Restoration Module
- 599 Adv. System Restoration Module
- 600 System Purifier
- 601 Exp. System Purifier
- 602 Tractor Beam
- 603 Hpw. Tractor Beam
- 604 Lrn. Tractor Beam
- 605 Mobile Refinery Mk. CCLXVII
- 606 Trap Extractor
- 607 Imp. Trap Extractor
- 608 Adv. Trap Extractor
- 609 Trap Reconfigurator
- 610 Recalibrator
- 611 Imp. Recalibrator
- 612 Adv. Recalibrator
- 613 Field Recycling Unit
- 614 Imp. Field Recycling Unit
- 615 Adv. Field Recycling Unit
- 616 Exp. Field Recycling Unit
- 617 Drone Bay
- 618 Z-Drone Bay
- 619 Mni. Drone Bay
- 620 Mapping Drone Bay
- 621 Adv. Drone Bay
- 622 Bomb Drone Bay
- 623 Thief Drone Bay
- 624 Decoy Drone Bay
- 625 Splice Drone Bay
- 626 Combat Drone Bay
- 627 Assault Drone Bay
- 628 Stealth Drone Bay
- 629 Swarm Drone Bay
- 630 Supersonic Drone Bay
- 631 Sensor Drone Bay
- 632 Hacking Drone Bay
- 633 Minesniffer Drone Bay
- 634 Army-in-a-Box
- 635 Wardrone Bay
- 636 Cobbler Unit
- 637 Bomb Factory No. 2
- 638 Mobile Assembly Unit
- 639 Heart of Steel
- 640 GOLEM Unit
- 641 PSU Rigger
- 642 Phasing AFG
- 643 AS-neutralizer No. 17b
- 644 V3-11A's Pendant
- 645 Chronowheel
- 646 Power Bank
- 647 Rainbow Chip
- 648 VL-GR5's Exoskeleton "Deathgrip"
- 649 Dimensional Node Initializer
- 650 Transdimensional Reconstructor
- 651 Hpw. Transdimensional Reconstructor
- 652 Supercharged TR
- 653 Core Expander
- 654 Core Regenerator
- 655 Integrity Redistributor
- 656 Integrated Dissipator
- 657 Supercharged Integrated Dissipator
- 658 Integrated Thermoelectric Network
- 659 Integrated Reactor
- 660 Supercharged Integrated Reactor
- 661 Integrated Mediator
- 662 Core Membrane
- 663 Navigation Efficiency Matrix
- 664 Core Reset Matrix
- 665 Subatomic Replicator
- 666 Terrabomb
- 667 Core Physics Calibrator
- 668 Spacefold Activator
- 669 Microwarp Drive
- 670 LC Capacitor
- 671 LRC Armor
- 672 LRC Storage
- 673 LRC Energy Well
- 674 LRC Matter Compressor
- 675 LRC Inertial Stabilizer
- 676 LRC Insulator
- 677 EM Pulse Gun
- 678 Hvy. EM Pulse Gun
- 679 EM Shotgun
- 680 Imp. EM Shotgun
- 681 Shock Rifle
- 682 Riot Gun
- 683 Hvy. EM Shotgun
- 684 Lightning Gun
- 685 Hvy. Riot Gun
- 686 Arc Projector
- 687 Prc. Shock Rifle
- 688 Hpw. Shock Rifle
- 689 Arc Thrower
- 690 Imp. Lightning Gun
- 691 Tesla Rifle
- 692 Imp. Arc Projector
- 693 Hvy. Tesla Rifle
- 694 Hyp. EM Gauss Rifle
- 695 Imp. Arc Thrower
- 696 01-MTF's Shockpuncher
- 697 Gamma Rifle
- 698 Tachyon Dispersion Ray
- 699 Immobilizer
- 700 Modified EM Gauss Rifle
- 701 AWS/EX-DEC
- 702 Enh. Gamma Rifle
- 703 Med. Laser
- 704 Sml. Laser
- 705 Backup Laser I
- 706 Beam Rifle
- 707 Particle Gun
- 708 Spread Laser
- 709 Imp. Medium Laser
- 710 Sub. Laser
- 711 Autobeam
- 712 Field Laser
- 713 Pulse Rifle
- 714 Backup Laser III
- 715 Hvy. Particle Gun
- 716 Prc. Beam Rifle
- 717 Adv. Beam Rifle
- 718 Hvy. Laser
- 719 Gatling Laser
- 720 Cld. Pulse Rifle
- 721 Hpw. Field Laser
- 722 Imp. Spread Laser
- 723 Mak. Laser
- 724 Plasma Rifle
- 725 Thermic Laser
- 726 Beamcaster
- 727 Force Rifle
- 728 Imp. Heavy Laser
- 729 Storm Laser
- 730 Zio. Laser-S
- 731 Wave Gun
- 732 Variable Charge Gun
- 733 Hvy. Beamcaster
- 734 Cld. Plasma Rifle
- 735 Enh. Force Rifle
- 736 Hvy. Gatling Laser
- 737 Zio. Phaser-S
- 738 Phase Gun
- 739 Dispersion Rifle
- 740 Backup Laser VII
- 741 Plasma Storm
- 742 Adv. Plasma Rifle
- 743 Hvy. Wave Gun
- 744 Adv. Variable Charge Gun
- 745 Cld. Phase Gun
- 746 Lrn. Gatling Laser
- 747 Warp Gun
- 748 Vortex Rifle
- 749 Zio. Laser-M
- 750 AWS/Thermal
- 751 PD Laser
- 752 Quantum Rifle
- 753 Prc. Phase Gun
- 754 Hvy. Dispersion Rifle
- 755 Vortex Shotgun
- 756 Vortex Rail
- 757 Zio. Phaser-M
- 758 Enh. Quantum Rifle
- 759 Zio. Laser-H
- 760 Hvy. Quantum Rifle
- 761 Zio. Phaser-H
- 762 Gatling Beam
- 763 Sigix Sheargun
- 764 Modified Sigix Sheargun
- 765 Lgt. EM Pulse Cannon
- 766 EM Pulse Cannon
- 767 Imp. EM Pulse Cannon
- 768 Proton Cannon
- 769 Lrn. Proton Cannon
- 770 Disruptor Cannon
- 771 Hvy. Proton Cannon
- 772 HERF Cannon
- 773 Hvy. Disruptor Cannon
- 774 Cld. Proton Cannon
- 775 Proton Burst Cannon
- 776 Com. HERF Cannon
- 777 Latent Energy Streamer
- 778 NK-0LA's Tesla Doomcannon
- 779 EMDS
- 780 Hpw. Disruptor Cannon
- 781 Beam Cannon
- 782 Particle Cannon
- 783 Adv. Beam Cannon
- 784 Sub. Beam Cannon
- 785 Hvy. Particle Cannon
- 786 Ion Cannon
- 787 Plasma Cannon
- 788 Hvy. Ion Cannon
- 789 Cld. Particle Cannon
- 790 Phase Cannon
- 791 Hvy. Plasma Cannon
- 792 Cld. Plasma Cannon
- 793 Com. Ion Cannon
- 794 Ion Burst Cannon
- 795 Adv. Plasma Cannon
- 796 Hvy. Phase Cannon
- 797 Neutron Cannon
- 798 Powered Cannon
- 799 Matter Neutralizer
- 800 Hvy. Neutron Cannon
- 801 Lrn. Phase Cannon
- 802 Cld. Phase Cannon
- 803 Vortex Cannon
- 804 Gui. Plasma Cannon
- 805 Nova Cannon
- 806 Imp. Matter Neutralizer
- 807 Exp. Thermic Cannon
- 808 Vortex Driver
- 809 Zio. Alpha Cannon
- 810 Asb. Focal Cannon
- 811 Enh. Nova Cannon
- 812 Firepult
- 813 YOLO Cannon
- 814 Potential Cannon
- 815 Warp Cannon
- 816 Cld. Nova Cannon
- 817 Null Cannon
- 818 Imp. Potential Cannon
- 819 Multinova Projection Cannon
- 820 Disintegrator
- 821 Core Cannon
- 822 Sigix Shearcannon
- 823 Drained L-Cannon
- 824 L-Cannon
- 825 Zio. Alpha Cannon Mk. II
- 826 BFG-9k Vortex Edition
- 827 Assault Rifle
- 828 Asb. Rifle
- 829 Lgt. Assault Rifle
- 830 Hvy. Assault Rifle
- 831 Autogun
- 832 Shotgun
- 833 Battle Rifle
- 834 Asb. Heavy Rifle
- 835 Sub. Machine Gun
- 836 Imp. Assault Rifle
- 837 Minigun
- 838 Hpw. Shotgun
- 839 Asb. Shotgun
- 840 Barrage Gun
- 841 Enh. Autogun
- 842 Gauss Rifle
- 843 Asb. Gauss Rifle
- 844 Flak Gun
- 845 Prc. Assault Rifle
- 846 Hvy. Battle Rifle
- 847 Mak. Shrapnel Gun
- 848 Coil Gun
- 849 Hyp. Gauss Rifle
- 850 Hvy. Machine Gun
- 851 Imp. Heavy Machine Gun
- 852 Com. Gauss Rifle
- 853 XL Autogun Subcomponent
- 854 KE Penetrator
- 855 Hyp. Coil Gun
- 856 Imp. KE Penetrator
- 857 Enh. Coil Gun
- 858 Com. Coil Gun
- 859 Railgun
- 860 Adv. KE Penetrator
- 861 Linked Autogun
- 862 AWS/Gauss
- 863 Hyp. Railgun
- 864 Helical Railgun
- 865 Com. Railgun
- 866 XL Autogun Array
- 867 12-ASH's Boomstick
- 868 8R-AWN's Boregun
- 869 Multirail
- 870 Hyp. Multirail
- 871 5H-AD0's Sniper Rifle
- 872 A3's Sniper Rifle
- 873 Lgt. Cannon
- 874 Imp. Light Cannon
- 875 Battle Cannon
- 876 Assault Cannon
- 877 Hvy. Assault Cannon
- 878 Flak Cannon
- 879 Adv. Assault Cannon
- 880 Gauss Cannon
- 881 Slug Cannon
- 882 Mni. Assault Cannon
- 883 Magnetic Acceleration Cannon
- 884 Hvy. Flak Cannon
- 885 Bore Cannon
- 886 Antimatter Cannon
- 887 Mass Driver
- 888 Hvy. Mass Driver
- 889 Enh. Gauss Cannon
- 890 Hyp. Gauss Cannon
- 891 Tri-rail Accelerator
- 892 Hardcell Cannon
- 893 Hvy. Gauss Cannon
- 894 Hyp. Mass Driver
- 895 Hvy. Autocannon
- 896 DAS Cannon
- 897 Lgt. Antimatter Cannon
- 898 Linear Accelerator
- 899 Hvy. Linear Accelerator
- 900 Com. Mass Driver
- 901 Hvy. Hardcell Cannon
- 902 Com. Linear Accelerator
- 903 Hyp. Linear Accelerator
- 904 Hcl. Linear Accelerator
- 905 Graviton Cannon
- 906 Blast Cannon
- 907 P1-3CE's Gatling Flakker
- 908 AWS/Autocannon
- 909 Perforator
- 910 Omega Cannon
- 911 EMP Blaster
- 912 Shock Bomb Launcher
- 913 Adv. EMP Blaster
- 914 Proton Missile Launcher
- 915 Imp. Proton Missile Launcher
- 916 Gui. EMP Blaster
- 917 Hvy. Shock Bomb Launcher
- 918 Tesla Bomb Launcher
- 919 Hvy. Proton Missile Launcher
- 920 Com. Tesla Bomb Launcher
- 921 Gamma Bomb Array
- 922 Enh. Gamma Bomb Array
- 923 Grenade Launcher
- 924 Rocket Launcher
- 925 Mni. Grenade Launcher
- 926 Sub. Shrapnel Launcher
- 927 Imp. Grenade Launcher
- 928 Missile Launcher
- 929 Concussive RPG
- 930 YI-UF0's Doublenader
- 931 Hvy. Rocket Launcher
- 932 Hvy. Missile Launcher
- 933 Gui. Missile Launcher
- 934 Prc. Grenade Launcher
- 935 Rocket Array
- 936 Lrn. Missile Launcher
- 937 Imp. Concussive RPG
- 938 Prc. Rocket Launcher
- 939 Scatter Rocket Array
- 940 Smartbomb Launcher
- 941 Mni. Smartbomb Launcher
- 942 Tiamat Missile Launcher
- 943 Thermoblaster
- 944 Micro-nuke Launcher
- 945 Adv. Concussive RPG
- 946 Neutron Missile Launcher
- 947 Fusion Bomb Launcher
- 948 Hellfire Missile Launcher
- 949 Adv. Micro-nuke Launcher
- 950 Tactical Quantum Warhead
- 951 Vortex Catalyst Activator
- 952 Chain Missile Launcher
- 953 Ragnarok Missile Launcher
- 954 Point Singularity Launcher
- 955 Gui. Micro-nuke Launcher
- 956 99-TNT's Nukerbomber
- 957 Z-bomb Delivery System
- 958 Sigix Terminator
- 959 Supercharged Sigix Terminator
- 960 Containment Facilitator
- 961 Detonator
- 962 Dirty Datajack
- 963 Splice Injector
- 964 Master Link
- 965 Datajack
- 966 Imp. Datajack
- 967 Adv. Datajack
- 968 Remote Datajack
- 969 Imp. Remote Datajack
- 970 Adv. Remote Datajack
- 971 Exp. Remote Datajack
- 972 Gui. Remote Datajack
- 973 ME-RLN's Wand
- 974 Field Lobotomy Kit
- 975 Mining Laser
- 976 Welding Torch
- 977 Plasma Cutter
- 978 Imp. Plasma Cutter
- 979 Exp. Plasma Cutter
- 980 CPS Tube
- 981 Multitool
- 982 Flamer
- 983 Asb. F-torch
- 984 Enh. Flamer
- 985 Plasma Flamer
- 986 Asb. P-torch
- 987 RU-N14's Throwing Claymores
- 988 RU-N14's Throwing Claymores v3
- 989 AD-0RF's Magmablaster
- 990 Stasis Beam
- 991 Stasis Projector
- 992 Exp. Stasis Projector
- 993 Molecular Deconstructor
- 994 SE_WE1
- 995 SE_WE2
- 996 SE_WE3
- 997 SE_WE4
- 998 SE_WE5
- 999 Hammer
-1000 Mace
-1001 Flail
-1002 Maul
-1003 Asb. Maul
-1004 Hvy. Hammer
-1005 Hvy. Mace
-1006 Hvy. Flail
-1007 Great Maul
-1008 Powered Hammer
-1009 Mak. Hammer
-1010 Power Maul
-1011 Asb. P-maul
-1012 Impact Mace
-1013 Shock Maul
-1014 Thunder Hammer
-1015 Compactor
-1016 Gravity Flail
-1017 CL-ANK's Mallet
-1018 Core Stripper
-1019 Mining Claw
-1020 EC_1
-1021 Katana
-1022 Asb. Blade
-1023 Scythe
-1024 Axe
-1025 Blade Saw
-1026 EC_3
-1027 Chainsword
-1028 Ripper
-1029 Mak. Axe
-1030 Mak. Sword
-1031 Great Axe
-1032 Greatsword
-1033 Power Sword
-1034 Asb. P-sword
-1035 Falx
-1036 Carbide Saw
-1037 Segregator
-1038 Tearclaws
-1039 EC_5
-1040 Phasing Sabre
-1041 Plasma Sword
-1042 Ionic Axe
-1043 Mni. Tearclaws
-1044 Dual-blade Saw
-1045 Vibroblade
-1046 Molecular Scythe
-1047 Centrium Greatsword
-1048 Master Tearclaws
-1049 Longsword +1
-1050 EC_7
-1051 Nanosword
-1052 Particle Cleaver
-1053 Centrium Claws
-1054 1C-UTU's Sword "Lootmaker"
-1055 Vortex Shredder
-1056 EC_9
-1057 1C-UTU's Sword "Choppy"
-1058 Quantum Blade
-1059 Sigix Broadsword
-1060 Spear
-1061 Mak. Spear
-1062 CR-A16's Pointy Stick
-1063 Hvy. Pick
-1064 Lance
-1065 Kinetic Spear
-1066 Force Lance
-1067 Plasma Lance
-1068 Enh. Force Lance
-1069 Vortex Lance
-1070 CR-A16's Behemoth Slayer
-1071 Blade Trap
-1072 Segregator Trap
-1073 Explosive Trap
-1074 Heavy Explosive Trap
-1075 Tiamat Bomb Trap
-1076 Fusion Bomb Trap
-1077 Hellfire Trap
-1078 Armageddon Trap
-1079 Dirty Bomb Trap
-1080 EMP Trap
-1081 Proton Bomb Trap
-1082 Tesla Bomb Trap
-1083 Gamma Bomb Trap
-1084 Shrapnel Trap
-1085 Piercing Trap
-1086 Shock Trap
-1087 EM Surge Trap
-1088 Fire Trap
-1089 Stasis Trap
-1090 Scrap Shield Fragment
-1091 Signal Generator
-1092 Self-destruct Interrupter
-1093 Sapper Charge
-1094 Zhirov Special
-1095 Deploy-a-Sentry
-1096 GAL Module
-1097 Portable AFG
-1098 SGEMP Prototype
-1099 Terrabomb Derivative
-1100 Sigix Containment Pod
-1101 Sigix Corpse
-1102 Meganuke
-1103 Gamma Refractor
+   5 CL-0N3 Data Core
+   6 A2 Data Core
+   7 A7 Data Core
+   8 MAIN.C Data Core
+   9 Architect Data Core
+  10 Scrap
+  11 Protomatter
+  12 Ion Engine
+  13 Lgt. Ion Engine
+  14 Backup Power I
+  15 Imp. Ion Engine
+  16 Rnf. Ion Engine
+  17 Hvy. Ion Engine
+  18 Cld. Ion Engine
+  19 Sub. Power Source
+  20 Deuterium Engine
+  21 Lgt. Deuterium Engine
+  22 Backup Power III
+  23 Nuclear Core
+  24 Lgt. Nuclear Core
+  25 Imp. Deuterium Engine
+  26 Rnf. Deuterium Engine
+  27 Hyb. Deuterium Engine
+  28 Hvy. Deuterium Engine
+  29 Cld. Deuterium Engine
+  30 Enh. Nuclear Core
+  31 Mic. Nuclear Core
+  32 Mak. Power Source
+  33 Angular Momentum Engine
+  34 Lgt. Angular Momentum Engine
+  35 F-cell Engine
+  36 Fission Core
+  37 Lgt. Fission Core
+  38 Hyb. Fission Core
+  39 Fusion Compressor
+  40 Cold Fusion Reactor
+  41 Neutrino Core
+  42 Lgt. Neutrino Core
+  43 Rnf. Fission Core
+  44 Enh. Fission Core
+  45 Cld. Fission Core
+  46 Mic. Fission Core
+  47 Fusion Reactor
+  48 Antimatter Reactor
+  49 Lgt. Antimatter Reactor
+  50 Rnf. Antimatter Reactor
+  51 Hyb. Antimatter Reactor
+  52 Backup Power VII
+  53 MA-1KR's Cyclogen
+  54 Ovr. Antimatter Reactor
+  55 Hvy. Antimatter Reactor
+  56 Mni. Fusion Reactor
+  57 Imp. Fusion Compressor
+  58 Mic. Neutrino Core
+  59 Zio. Light DM Reactor
+  60 Zio. Heavy DM Reactor
+  61 Particle Reactor
+  62 Lgt. Particle Reactor
+  63 Mic. Antimatter Reactor
+  64 Com. Particle Reactor
+  65 Cld. Antimatter Reactor
+  66 Graviton Reactor
+  67 Asb. Flux Generator
+  68 Quantum Reactor
+  69 Lgt. Quantum Reactor
+  70 Rnf. Quantum Reactor
+  71 Imp. Quantum Reactor
+  72 Exp. Antimatter Reactor
+  73 Hyb. Graviton Reactor
+  74 Zero-point Reactor
+  75 Vortex Chain Reactor
+  76 Singularity Reactor
+  77 Cep. Zero-point Core
+  78 Matter Drive
+  79 Meta Core
+  80 SE_PO1
+  81 Lgt. Treads
+  82 Imp. Treads
+  83 Spk. Treads
+  84 Arm. Treads
+  85 Adv. Treads
+  86 Ovr. Treads
+  87 Med. Treads
+  88 Imp. Medium Treads
+  89 Spk. Medium Treads
+  90 Arm. Medium Treads
+  91 Hvy. Treads
+  92 Ovr. Medium Treads
+  93 Tri-treads
+  94 Wartreads
+  95 Adv. Medium Treads
+  96 Enh. Armored Medium Treads
+  97 Imp. Heavy Treads
+  98 Hvy. Siege Treads
+  99 Spk. Heavy Treads
+ 100 Vmp. Heavy Siege Treads
+ 101 DD-05H's Wartreads
+ 102 Biometal Medium Treads
+ 103 Arm. Heavy Treads
+ 104 Adv. Heavy Treads
+ 105 Imp. Heavy Siege Treads
+ 106 Centrium Heavy Treads
+ 107 Megatreads
+ 108 Biometal Heavy Treads
+ 109 Exp. Biometal Heavy Treads
+ 110 Enh. Armored Heavy Treads
+ 111 Adv. Heavy Siege Treads
+ 112 Hds. Centrium Heavy Treads
+ 113 Exp. Biometal Medium Treads
+ 114 DW-4LL's Griptreads
+ 115 Exp. Heavy Siege Treads
+ 116 Aluminum Leg
+ 117 Imp. Aluminum Leg
+ 118 Carbon-fiber Leg
+ 119 Titanium Leg
+ 120 Ovr. Titanium Leg
+ 121 VSS Leg
+ 122 Imp. Carbon-fiber Leg
+ 123 Imp. Titanium Leg
+ 124 Lgt. Armored Exoskeleton
+ 125 Mak. Leg
+ 126 Flexi-carbon Leg
+ 127 Arm. Leg
+ 128 Imp. VSS Leg
+ 129 Multireflex Exoskeleton
+ 130 Zio. Composite Leg I
+ 131 Thunder Leg
+ 132 Med. Armored Exoskeleton
+ 133 Ovr. Flexi-carbon Leg
+ 134 Enh. Flexi-carbon Leg
+ 135 Enh. Armored Leg
+ 136 Arachnoskeleton
+ 137 Myomer Leg
+ 138 Adv. VSS Leg
+ 139 Shield Leg
+ 140 Ovr. Armored Exoskeleton
+ 141 Adv. Myomer Leg
+ 142 Exp. Flexi-carbon Leg
+ 143 Zio. Composite Leg II
+ 144 Cargo Legs
+ 145 Etherial Tendrils
+ 146 Biometal Leg
+ 147 Imp. Thunder Leg
+ 148 Hvy. Armored Exoskeleton
+ 149 Enh. Biometal Leg
+ 150 Exp. Myomer Leg
+ 151 Enh. Multireflex Exoskeleton
+ 152 Tripod Weapons Platform
+ 153 T.R.O.L.L. Exoskeleton
+ 154 Asb. Alloy Leg
+ 155 Centrium Leg
+ 156 Hvy. Shield Leg
+ 157 Hds. Centrium Leg
+ 158 Exp. Biometal Leg
+ 159 Exp. VSS Leg
+ 160 Zio. Supercomposite Leg
+ 161 Potential Leg
+ 162 Exp. Armored Exoskeleton
+ 163 Cep. Biometal Exoskeleton
+ 164 Myomer Exoskeleton
+ 165 Sigix Exoskeleton
+ 166 SE_PR1
+ 167 Wheel
+ 168 Com. Wheel
+ 169 Arm. Wheel
+ 170 Sub. Monowheel
+ 171 Ovr. Scrapsphere
+ 172 Arm. Huge Wheel
+ 173 Ballwheel
+ 174 Ovr. Huge Scrapsphere
+ 175 Centrium Wheel
+ 176 Hds. Centrium Wheel
+ 177 Hover Unit
+ 178 Backup Propulsion I
+ 179 Imp. Hover Unit
+ 180 Airjet
+ 181 Aerolev Unit
+ 182 Asb. Hover Unit
+ 183 Backup Propulsion III
+ 184 Gravmag System
+ 185 Asb. Hover System
+ 186 Imp. Airjet
+ 187 Cld. Airjet
+ 188 Imp. Gravmag System
+ 189 Cld. Aerolev Unit
+ 190 Cmb. Airjet
+ 191 Gravmag Array
+ 192 Mak. Hover Unit
+ 193 Zio. Glidesys I
+ 194 Antigrav System
+ 195 Gyrokinetic Inverter
+ 196 Linear Gravjet
+ 197 Cld. Gravmag System
+ 198 Cmb. Gravmag System
+ 199 Imp. Antigrav System
+ 200 Imp. Gyrokinetic Inverter
+ 201 Imp. Linear Gravjet
+ 202 Backup Propulsion VII
+ 203 Zio. Glidesys II
+ 204 Cld. Antigrav System
+ 205 Cmb. Antigrav System
+ 206 Antigrav Array
+ 207 Hoverbase
+ 208 Exp. Gyrokinetic Inverter
+ 209 Cld. Linear Gravjet
+ 210 Cmb. Linear Gravjet
+ 211 Exp. Antigrav System
+ 212 Gravjet Array
+ 213 Cep. Combat Aerolev Unit
+ 214 Cep. Gyrokinetic System
+ 215 CL-0N3's Metamass Displacer
+ 216 Flight Unit
+ 217 VTOL Module
+ 218 Imp. Flight Unit
+ 219 Cesium-ion Thruster
+ 220 Surge Thruster
+ 221 Imp. VTOL Module
+ 222 Xenon Bombardment Thruster
+ 223 Imp. Cesium-ion Thruster
+ 224 Cld. VTOL Module
+ 225 Mak. Flight Unit
+ 226 Nuclear Pulse Thruster
+ 227 Imp. Surge Thruster
+ 228 Mni. Nuclear Pulse Thruster
+ 229 Cld. Cesium-ion Thruster
+ 230 Biomechanical Wings
+ 231 Field Propulsion Drive
+ 232 Cld. Nuclear Pulse Thruster
+ 233 Exp. Cesium-ion Thruster
+ 234 Nuclear Pulse Array
+ 235 Mak. Microthruster
+ 236 Impulse Thruster
+ 237 Adv. Surge Thruster
+ 238 Cld. Field Propulsion Drive
+ 239 Field Propulsion Array
+ 240 Diametric Drive
+ 241 Flying Fortress v7
+ 242 T-thruster
+ 243 Integrated Tracker Drive
+ 244 Etherial Propulsion
+ 245 Q-thruster
+ 246 Electron Diverter
+ 247 Imp. Diametric Drive
+ 248 Cld. Impulse Thruster
+ 249 Impulse Thruster Array
+ 250 Flightbrick
+ 251 Imp. Q-thruster
+ 252 Cld. Q-thruster
+ 253 Exp. Q-thruster
+ 254 Exp. Biomechanical Wings
+ 255 Exp. Surge Thruster
+ 256 Cep. Fieldthrust Drive
+ 257 Scrap Engine
+ 258 Arm. Scrap Engine
+ 259 Scrap Suit
+ 260 0bPrime Scrap Suit
+ 261 Matter Focus
+ 262 Desublimator
+ 263 Power Amplifier
+ 264 Adv. Power Amplifier
+ 265 Exp. Power Amplifier
+ 266 Thermal Generator
+ 267 Imp. Thermal Generator
+ 268 Adv. Thermal Generator
+ 269 Exp. Thermal Generator
+ 270 Cryofiber Web
+ 271 Imp. Cryofiber Web
+ 272 Adv. Cryofiber Web
+ 273 Exp. Cryofiber Web
+ 274 Heat Sink
+ 275 Imp. Heat Sink
+ 276 Adv. Heat Sink
+ 277 Exp. Heat Sink
+ 278 Cep. Phasing Heat Sink
+ 279 Cooling System
+ 280 Imp. Cooling System
+ 281 Adv. Cooling System
+ 282 Exp. Cooling System
+ 283 Mak. Coolant Network
+ 284 Coolant Network
+ 285 Asb. Nanovents
+ 286 2N-1CE's Frost Array
+ 287 Cep. Turbovents
+ 288 Disposable Heat Sink
+ 289 Coolant Injector
+ 290 Imp. Coolant Injector
+ 291 Adv. Coolant Injector
+ 292 Exp. Coolant Injector
+ 293 Mak. Microdissipator Network
+ 294 Cep. Thermoelectric Network
+ 295 Sml. Storage Unit
+ 296 Med. Storage Unit
+ 297 Lrg. Storage Unit
+ 298 Hcp. Storage Unit
+ 299 Huge Storage Unit
+ 300 Cargo Storage Unit
+ 301 Lgt. Humpback
+ 302 Humpback
+ 303 Vmp. Humpback
+ 304 Lightpack 2.0
+ 305 Cep. Antigrav Storage Unit
+ 306 Sml. Battery
+ 307 Med. Battery
+ 308 Lrg. Battery
+ 309 Hcp. Battery
+ 310 Com. Battery
+ 311 Energy Well
+ 312 Imp. Energy Well
+ 313 Adv. Energy Well
+ 314 Exp. Energy Well
+ 315 Cep. Chromion Battery
+ 316 Zio. Biocell
+ 317 Asb. Biocell Array
+ 318 Zio. Biocell Array
+ 319 Superbattery
+ 320 Sml. Matter Pod
+ 321 Med. Matter Pod
+ 322 Lrg. Matter Pod
+ 323 Hcp. Matter Pod
+ 324 Com. Matter Pod
+ 325 Matter Compressor
+ 326 Imp. Matter Compressor
+ 327 Adv. Matter Compressor
+ 328 Exp. Matter Compressor
+ 329 YI-UF0's Bottomless Matter Pit
+ 330 Cep. NT7 Matterbank
+ 331 Weight Redist. System
+ 332 Adv. Weight Redist. System
+ 333 Gravity Neutralizer
+ 334 Adv. Gravity Neutralizer
+ 335 Quantum Shading Machine
+ 336 Asb. Suspension Frame
+ 337 Adv. Quantum Shading Machine
+ 338 Cep. Dimensional Manipulator
+ 339 Rocket Booster
+ 340 Asb. Metafiber Network
+ 341 Zio. Metafield Generator
+ 342 ST Field Compressor
+ 343 Siege Articulator
+ 344 Structural Scanner
+ 345 Deep Structural Scanner
+ 346 Plexus Tether
+ 347 Trap Scanner
+ 348 Imp. Trap Scanner
+ 349 Mak. Trap Scanner
+ 350 Adv. Trap Scanner
+ 351 Machine Analyzer
+ 352 Triangulator
+ 353 Visual Processing Unit
+ 354 Sub. Optics
+ 355 Adv. Visual Processing Unit
+ 356 Enh. Optical Array
+ 357 Exp. Optical Array
+ 358 Spectral Analyzer
+ 359 Sensor Array
+ 360 Imp. Sensor Array
+ 361 Adv. Sensor Array
+ 362 Lrn. Sensor Array
+ 363 Mak. Sensor Array
+ 364 Exp. Sensor Array
+ 365 Signal Interpreter
+ 366 Imp. Signal Interpreter
+ 367 Adv. Signal Interpreter
+ 368 Exp. Signal Interpreter
+ 369 Active Sensor Suite
+ 370 Exp. Active Sensor Suite
+ 371 IFF Parser
+ 372 Lrn. IFF Parser
+ 373 Zeronet Interface
+ 374 Terrain Scanner
+ 375 Imp. Terrain Scanner
+ 376 Adv. Terrain Scanner
+ 377 Mak. Terrain Scanner
+ 378 Lrn. Terrain Scanner
+ 379 Exp. Terrain Scanner
+ 380 Surveybot 24 Scanner
+ 381 Terrain Scan Processor
+ 382 Imp. Terrain Scan Processor
+ 383 Mak. Terrain Scan Processor
+ 384 Adv. Terrain Scan Processor
+ 385 Exp. Terrain Scan Processor
+ 386 Surveybot 17 Chip
+ 387 Surveybot 24 Chip
+ 388 Seismic Detector
+ 389 Transport Network Coupler
+ 390 Modified TNC
+ 391 Encrypted Comm Array
+ 392 0b10 Decoder Chip [Generic]
+ 393 0b10 Decoder Chip [Looter]
+ 394 0b10 Decoder Chip [Scout]
+ 395 0b10 Decoder Chip [Skirmisher]
+ 396 0b10 Alert Chip
+ 397 Salvage Targeting Computer
+ 398 Imp. Salvage Targeting Computer
+ 399 Mak. Salvage Targeting Computer
+ 400 Adv. Salvage Targeting Computer
+ 401 Exp. Salvage Targeting Computer
+ 402 Partition Strike Chip
+ 403 Asb. Combat Suite
+ 404 Targeting Computer
+ 405 Imp. Targeting Computer
+ 406 Mak. Targeting Computer
+ 407 Adv. Targeting Computer
+ 408 Exp. Targeting Computer
+ 409 Multitargeting Array
+ 410 Cep. Hypertargeting System
+ 411 Cep. Countertargeting System
+ 412 Tactical Coordination Suite
+ 413 Cep. Networked Targeting System
+ 414 Melee Analysis Suite
+ 415 Imp. Melee Analysis Suite
+ 416 Adv. Melee Analysis Suite
+ 417 Exp. Melee Analysis Suite
+ 418 Cep. Melee Reflex Suite
+ 419 Cep. Projectile Intercept Suite
+ 420 Launcher Guidance Computer
+ 421 Imp. Launcher Guidance Computer
+ 422 Adv. Launcher Guidance Computer
+ 423 Exp. Launcher Guidance Computer
+ 424 Weapon Mount
+ 425 Cep. Weapon Articulator
+ 426 Target Analyzer
+ 427 Imp. Target Analyzer
+ 428 Adv. Target Analyzer
+ 429 Exp. Target Analyzer
+ 430 Core Analyzer
+ 431 Exp. Core Analyzer
+ 432 Cep. Core Analysis Suite
+ 433 Armor Integrity Analyzer
+ 434 Imp. Armor Integrity Analyzer
+ 435 Exp. Armor Integrity Analyzer
+ 436 Recoil Stabilizer
+ 437 Adv. Recoil Stabilizer
+ 438 Cep. Recoil Nullifier
+ 439 Matter Filter
+ 440 Prc. Matter Filter
+ 441 Energy Filter
+ 442 Prc. Energy Filter
+ 443 Particle Charger
+ 444 Imp. Particle Charger
+ 445 Adv. Particle Charger
+ 446 Particle Accelerator
+ 447 Imp. Particle Accelerator
+ 448 Adv. Particle Accelerator
+ 449 Kinecellerator
+ 450 Imp. Kinecellerator
+ 451 Adv. Kinecellerator
+ 452 Exp. Kinecellerator
+ 453 Expert System
+ 454 Heavy Servo Lattice
+ 455 VL-GR5's Timing Chip
+ 456 Launcher Loader
+ 457 Quantum Capacitor
+ 458 Mni. Quantum Capacitor
+ 459 Weapon Cycler
+ 460 Imp. Weapon Cycler
+ 461 Adv. Weapon Cycler
+ 462 Exp. Weapon Cycler
+ 463 Microactuators
+ 464 Nanoactuators
+ 465 Femtoactuators
+ 466 Actuator Array
+ 467 Imp. Actuator Array
+ 468 Adv. Actuator Array
+ 469 Exp. Actuator Array
+ 470 Force Booster
+ 471 Imp. Force Booster
+ 472 Adv. Force Booster
+ 473 Exp. Force Booster
+ 474 Stasis Canceller
+ 475 Transmission Jammer
+ 476 Mak. Transmission Jammer
+ 477 Imp. Transmission Jammer
+ 478 Adv. Transmission Jammer
+ 479 Exp. Transmission Jammer
+ 480 Jamming Amplifier
+ 481 ECM Suite
+ 482 Mak. ECM Suite
+ 483 Adv. ECM Suite
+ 484 Exp. ECM Suite
+ 485 Active Sensor Spoofer
+ 486 Reaction Control System
+ 487 Imp. Reaction Control System
+ 488 Adv. Reaction Control System
+ 489 Exp. Reaction Control System
+ 490 Cep. Reaction Jets
+ 491 Phase Shifter
+ 492 Imp. Phase Shifter
+ 493 Adv. Phase Shifter
+ 494 Exp. Phase Shifter
+ 495 Cep. Phase Shift Module
+ 496 Cloaking Device
+ 497 Mak. Cloaking Device
+ 498 Imp. Cloaking Device
+ 499 Adv. Cloaking Device
+ 500 Exp. Cloaking Device
+ 501 Cep. Cloak Mesh
+ 502 Cloak of Protection
+ 503 5H-AD0's Cloak
+ 504 ID Mask
+ 505 Core Shielding
+ 506 Imp. Core Shielding
+ 507 Mak. Core Shielding
+ 508 Exp. Core Shielding
+ 509 Cep. Core Shell
+ 510 Power Shielding
+ 511 Imp. Power Shielding
+ 512 Mak. Power Shielding
+ 513 Exp. Power Shielding
+ 514 Propulsion Shielding
+ 515 Imp. Propulsion Shielding
+ 516 Mak. Propulsion Shielding
+ 517 Exp. Propulsion Shielding
+ 518 Utility Shielding
+ 519 Imp. Utility Shielding
+ 520 Mak. Utility Shielding
+ 521 Exp. Utility Shielding
+ 522 Weapon Shielding
+ 523 Imp. Weapon Shielding
+ 524 Mak. Weapon Shielding
+ 525 Exp. Weapon Shielding
+ 526 Zio. Weapon Casing
+ 527 Backup Plating I
+ 528 Backup Plating III
+ 529 Backup Plating VII
+ 530 Lgt. Armor Plating
+ 531 Med. Armor Plating
+ 532 Hvy. Armor Plating
+ 533 Zio. Light Carapace
+ 534 Zio. Heavy Carapace
+ 535 Hrd. Light Armor Plating
+ 536 Hrd. Medium Armor Plating
+ 537 Hrd. Heavy Armor Plating
+ 538 Imp. Light Armor Plating
+ 539 Imp. Medium Armor Plating
+ 540 Imp. Heavy Armor Plating
+ 541 Mak. Light Armor Plating
+ 542 Mak. Medium Armor Plating
+ 543 Mak. Heavy Armor Plating
+ 544 Lyr. Light Armor Plating
+ 545 Lyr. Medium Armor Plating
+ 546 Lyr. Heavy Armor Plating
+ 547 Gun Armor
+ 548 Centrium Light Armor Plating
+ 549 Centrium Medium Armor Plating
+ 550 Centrium Heavy Armor Plating
+ 551 Centrium Linked Plating
+ 552 Reactive Plating
+ 553 Med. Reactive Plating
+ 554 Mak. Kinetic Plating
+ 555 Hvy. Reactive Plating
+ 556 Superdense Plating
+ 557 Reflective Plating
+ 558 Med. Reflective Plating
+ 559 Mak. Thermal Plating
+ 560 Hvy. Reflective Plating
+ 561 8R-AWN's Armor/TH
+ 562 8R-AWN's Armor/EX
+ 563 Insulated Plating
+ 564 Med. Insulated Plating
+ 565 Hvy. Insulated Plating
+ 566 Damper Plating
+ 567 Zio. Shade Carapace
+ 568 Zio. Shade Armor
+ 569 Asb. Alloy Armor
+ 570 Mak. Ablative Armor
+ 571 Active Cooling Armor
+ 572 Scrap Shield
+ 573 Enh. Scrap Shield
+ 574 Powered Armor
+ 575 Imp. Powered Armor
+ 576 Adv. Powered Armor
+ 577 Exp. Powered Armor
+ 578 1C-UTU's Buckler
+ 579 Tower Shield
+ 580 DW-4LL's Blast Wall
+ 581 Lgt. Regenerative Plating
+ 582 Med. Regenerative Plating
+ 583 Hvy. Regenerative Plating
+ 584 SHELL Armor
+ 585 Cep. RG22 Armor
+ 586 Phase Armor
+ 587 Vmp. Brace Plating
+ 588 Graphene Brace
+ 589 Focal Shield
+ 590 Imp. Focal Shield
+ 591 Adv. Focal Shield
+ 592 Exp. Focal Shield
+ 593 Thermal Shield
+ 594 Imp. Thermal Shield
+ 595 Adv. Thermal Shield
+ 596 Exp. Thermal Shield
+ 597 Thermal Barrier
+ 598 Cep. Beam Splitter
+ 599 Thermal Defense Suite
+ 600 Imp. Thermal Defense Suite
+ 601 Adv. Thermal Defense Suite
+ 602 Exp. Thermal Defense Suite
+ 603 Shock Absorption System
+ 604 Imp. Shock Absorption System
+ 605 Exp. Shock Absorption System
+ 606 EM Shield
+ 607 Adv. EM Shield
+ 608 Exp. EM Shield
+ 609 EM Disruption Field
+ 610 Adv. EM Disruption Field
+ 611 Exp. EM Disruption Field
+ 612 ME-RLN's Chromatic Screen
+ 613 Hardlight Generator
+ 614 Imp. Hardlight Generator
+ 615 Adv. Hardlight Generator
+ 616 Exp. Hardlight Generator
+ 617 Cep. Hardlight Director
+ 618 Shield Generator
+ 619 Imp. Shield Generator
+ 620 Adv. Shield Generator
+ 621 Exp. Shield Generator
+ 622 Force Field
+ 623 Imp. Force Field
+ 624 Adv. Force Field
+ 625 Exp. Force Field
+ 626 7V-RTL's Ultimate Field
+ 627 Vortex Field Projector
+ 628 Remote Shield
+ 629 Imp. Remote Shield
+ 630 Adv. Remote Shield
+ 631 Exp. Remote Shield
+ 632 Remote Force Field
+ 633 Imp. Remote Force Field
+ 634 Adv. Remote Force Field
+ 635 QV-33N's Drone Shield
+ 636 AEGIS Remote Shield
+ 637 Cep. Energy Mantle
+ 638 Phase Redirector
+ 639 Field Manipulator
+ 640 Energy Deflector
+ 641 Point Defense System
+ 642 Imp. Point Defense System
+ 643 Adv. Point Defense System
+ 644 Cep. Antimissile System
+ 645 EX Chip 1
+ 646 Hacking Suite
+ 647 Mak. Hacking Suite
+ 648 Imp. Hacking Suite
+ 649 Adv. Hacking Suite
+ 650 Exp. Hacking Suite
+ 651 System Mapper
+ 652 Deep Network Scanner
+ 653 Cep. Network Penetrator
+ 654 Architect God Chip A
+ 655 EX Chip 2
+ 656 System Shield
+ 657 Mak. System Shield
+ 658 Imp. System Shield
+ 659 Adv. System Shield
+ 660 Exp. System Shield
+ 661 Ghost Barrier
+ 662 Quantum Router
+ 663 Architect God Chip D
+ 664 Authchip [R/NC]
+ 665 Authchip [R/Combat]
+ 666 Authchip [Power]
+ 667 Authchip [Propulsion]
+ 668 Authchip [Device]
+ 669 Authchip [Storage]
+ 670 Authchip [Processor]
+ 671 Authchip [Armor]
+ 672 Authchip [Weapon]
+ 673 Relay Coupler [NC]
+ 674 Relay Coupler [C]
+ 675 Relay Coupler [Swarmer]
+ 676 Relay Coupler [Cutter]
+ 677 Relay Coupler [Grunt]
+ 678 Relay Coupler [Brawler]
+ 679 Relay Coupler [Duelist]
+ 680 Relay Coupler [Sentry]
+ 681 Relay Coupler [Demolisher]
+ 682 Relay Coupler [Specialist]
+ 683 Relay Coupler [Hunter]
+ 684 Relay Coupler [Heavy]
+ 685 Relay Coupler [Behemoth]
+ 686 Relay Coupler [Programmer]
+ 687 Relay Coupler [Proto]
+ 688 Skeleton Box
+ 689 01-MTF's Autohacker
+ 690 Component Analysis Suite
+ 691 Imp. Component Analysis Suite
+ 692 Adv. Component Analysis Suite
+ 693 A0-MCA's Component Scanner
+ 694 Tech Extrapolator
+ 695 Dynamic Insulation System
+ 696 Imp. Dynamic Insulation System
+ 697 Adv. Dynamic Insulation System
+ 698 System Guard
+ 699 Imp. System Guard
+ 700 Exp. System Guard
+ 701 Corruption Screen
+ 702 Imp. Corruption Screen
+ 703 Adv. Corruption Screen
+ 704 System Restoration Module
+ 705 Mak. System Restoration Module
+ 706 Imp. System Restoration Module
+ 707 Adv. System Restoration Module
+ 708 System Purifier
+ 709 Exp. System Purifier
+ 710 Tractor Beam
+ 711 Hpw. Tractor Beam
+ 712 Lrn. Tractor Beam
+ 713 Cep. Matter Streamer
+ 714 Mobile Refinery Mk. CCLXVII
+ 715 Trap Extractor
+ 716 Imp. Trap Extractor
+ 717 Adv. Trap Extractor
+ 718 Exp. Trap Extractor
+ 719 Trap Reconfigurator
+ 720 Recalibrator
+ 721 Imp. Recalibrator
+ 722 Adv. Recalibrator
+ 723 Exp. Recalibrator
+ 724 Crosscalibrator
+ 725 Field Recycling Unit
+ 726 Imp. Field Recycling Unit
+ 727 Adv. Field Recycling Unit
+ 728 Exp. Field Recycling Unit
+ 729 Drone Bay
+ 730 Z-Drone Bay
+ 731 Mni. Drone Bay
+ 732 Mapping Drone Bay
+ 733 Adv. Drone Bay
+ 734 Bomb Drone Bay
+ 735 Thief Drone Bay
+ 736 Decoy Drone Bay
+ 737 Splice Drone Bay
+ 738 Combat Drone Bay
+ 739 Assault Drone Bay
+ 740 Stealth Drone Bay
+ 741 Swarm Drone Bay
+ 742 Supersonic Drone Bay
+ 743 Sensor Drone Bay
+ 744 Hacking Drone Bay
+ 745 Minesniffer Drone Bay
+ 746 Army-in-a-Box
+ 747 Master Drone Bay
+ 748 Cep. Impact Drone Bay
+ 749 Wardrone Bay
+ 750 Cobbler Unit
+ 751 Bomb Factory No. 2
+ 752 Mobile Assembly Unit
+ 753 QV-33N's Launch Deck
+ 754 GL-D0S's Turretformer
+ 755 Heart of Steel
+ 756 Scrapoid Pod
+ 757 GOLEM Unit
+ 758 PSU Rigger
+ 759 Machine Rigger
+ 760 Phasing AFG
+ 761 AS-neutralizer No. 17b
+ 762 V3-11A's Pendant
+ 763 Amulet of Y3-NDR
+ 764 Chronowheel
+ 765 Power Bank
+ 766 Rainbow Chip
+ 767 VL-GR5's Exoskeleton "Deathgrip"
+ 768 Dimensional Node Initializer
+ 769 Transdimensional Reconstructor
+ 770 Hpw. Transdimensional Reconstructor
+ 771 Supercharged TR
+ 772 Core Expander
+ 773 Core Regenerator
+ 774 Integrity Redistributor
+ 775 Integrated Dissipator
+ 776 Supercharged Integrated Dissipator
+ 777 Integrated Thermoelectric Network
+ 778 Integrated Reactor
+ 779 Supercharged Integrated Reactor
+ 780 Integrated Mediator
+ 781 Core Membrane
+ 782 Navigation Efficiency Matrix
+ 783 Core Reset Matrix
+ 784 Subatomic Replicator
+ 785 Terrabomb
+ 786 Core Physics Calibrator
+ 787 Personal Teleporter v0.10
+ 788 Telecube
+ 789 Cep. Navigation Harness
+ 790 Supercharged Navigation Harness
+ 791 Spacefold Activator
+ 792 Microwarp Drive
+ 793 LC Capacitor
+ 794 LRC Armor
+ 795 LRC Storage
+ 796 LRC Energy Well
+ 797 LRC Matter Compressor
+ 798 LRC Inertial Stabilizer
+ 799 LRC Insulator
+ 800 Cep. Nanofilaments [Conductive]
+ 801 Cep. Nanofilaments [Tensile]
+ 802 Cep. Nanofilaments [Polyglass]
+ 803 EM Pulse Gun
+ 804 Hvy. EM Pulse Gun
+ 805 EM Shotgun
+ 806 Imp. EM Shotgun
+ 807 Shock Rifle
+ 808 Riot Gun
+ 809 Hvy. EM Shotgun
+ 810 Lightning Gun
+ 811 Hvy. Riot Gun
+ 812 Arc Projector
+ 813 Prc. Shock Rifle
+ 814 Hpw. Shock Rifle
+ 815 Arc Thrower
+ 816 Imp. Lightning Gun
+ 817 Tesla Rifle
+ 818 Imp. Arc Projector
+ 819 Hvy. Tesla Rifle
+ 820 Hyp. EM Gauss Rifle
+ 821 Imp. Arc Thrower
+ 822 Antisys Shotgun
+ 823 01-MTF's Shockpuncher
+ 824 Shockbolt Module
+ 825 Gamma Rifle
+ 826 Tachyon Dispersion Ray
+ 827 Immobilizer
+ 828 Electrostorm Shotgun
+ 829 Modified EM Gauss Rifle
+ 830 AWS/EX-DEC
+ 831 Enh. Gamma Rifle
+ 832 Cep. Lightning Penetrator
+ 833 Med. Laser
+ 834 Sml. Laser
+ 835 Salvaging Laser
+ 836 Backup Laser I
+ 837 Beam Rifle
+ 838 Particle Gun
+ 839 Spread Laser
+ 840 Imp. Medium Laser
+ 841 Sub. Laser
+ 842 Autobeam
+ 843 Field Laser
+ 844 Pulse Rifle
+ 845 Ovr. Pulse Rifle
+ 846 Backup Laser III
+ 847 Hvy. Particle Gun
+ 848 Prc. Beam Rifle
+ 849 Adv. Beam Rifle
+ 850 Hvy. Laser
+ 851 Gatling Laser
+ 852 Cld. Pulse Rifle
+ 853 Hpw. Field Laser
+ 854 Imp. Spread Laser
+ 855 Mak. Laser
+ 856 Plasma Rifle
+ 857 Thermic Laser
+ 858 Beamcaster
+ 859 Force Rifle
+ 860 Imp. Heavy Laser
+ 861 Storm Laser
+ 862 Zio. Laser-S
+ 863 Wave Gun
+ 864 Variable Charge Gun
+ 865 Hvy. Beamcaster
+ 866 Ovr. Beamcaster
+ 867 Cld. Plasma Rifle
+ 868 Enh. Force Rifle
+ 869 Hvy. Gatling Laser
+ 870 Zio. Phaser-S
+ 871 Phase Gun
+ 872 Dispersion Rifle
+ 873 Backup Laser VII
+ 874 Plasma Storm
+ 875 Adv. Plasma Rifle
+ 876 Hvy. Wave Gun
+ 877 Adv. Variable Charge Gun
+ 878 Cld. Phase Gun
+ 879 Lrn. Gatling Laser
+ 880 Warp Gun
+ 881 Vortex Rifle
+ 882 Zio. Laser-M
+ 883 AWS/Thermal
+ 884 PD Laser
+ 885 KN-7UR's Autopenetrator
+ 886 Stealth Gun
+ 887 Quantum Rifle
+ 888 Ovr. Quantum Rifle
+ 889 Prc. Phase Gun
+ 890 Hvy. Dispersion Rifle
+ 891 Vortex Shotgun
+ 892 Vortex Rail
+ 893 Thermal Shotgun
+ 894 Piercelight Module
+ 895 Zio. Phaser-M
+ 896 Enh. Quantum Rifle
+ 897 Zio. Laser-H
+ 898 Hvy. Quantum Rifle
+ 899 Zio. Phaser-H
+ 900 Gatling Beam
+ 901 Cep. Variable Chargecaster
+ 902 Cep. Disintegration Ray
+ 903 Sigix Sheargun
+ 904 Modified Sigix Sheargun
+ 905 Lgt. EM Pulse Cannon
+ 906 EM Pulse Cannon
+ 907 Imp. EM Pulse Cannon
+ 908 Proton Cannon
+ 909 Lrn. Proton Cannon
+ 910 Disruptor Cannon
+ 911 Hvy. Proton Cannon
+ 912 HERF Cannon
+ 913 Hvy. Disruptor Cannon
+ 914 Cld. Proton Cannon
+ 915 Proton Burst Cannon
+ 916 Com. HERF Cannon
+ 917 Latent Energy Streamer
+ 918 NK-0LA's Tesla Doomcannon
+ 919 EMDS
+ 920 Hpw. Disruptor Cannon
+ 921 Beam Cannon
+ 922 Particle Cannon
+ 923 Adv. Beam Cannon
+ 924 Sub. Beam Cannon
+ 925 Hvy. Particle Cannon
+ 926 Ion Cannon
+ 927 Plasma Cannon
+ 928 Hvy. Ion Cannon
+ 929 Cld. Particle Cannon
+ 930 Phase Cannon
+ 931 Hvy. Plasma Cannon
+ 932 Cld. Plasma Cannon
+ 933 Com. Ion Cannon
+ 934 Ion Burst Cannon
+ 935 Adv. Plasma Cannon
+ 936 Hvy. Phase Cannon
+ 937 Ovr. Phase Cannon
+ 938 Neutron Cannon
+ 939 Powered Cannon
+ 940 Matter Neutralizer
+ 941 Hvy. Neutron Cannon
+ 942 Lrn. Phase Cannon
+ 943 Cld. Phase Cannon
+ 944 Vortex Cannon
+ 945 Gui. Plasma Cannon
+ 946 Nova Cannon
+ 947 Ovr. Nova Cannon
+ 948 Imp. Matter Neutralizer
+ 949 Exp. Thermic Cannon
+ 950 Vortex Driver
+ 951 Zio. Alpha Cannon
+ 952 Asb. Focal Cannon
+ 953 Enh. Nova Cannon
+ 954 Firepult
+ 955 YOLO Cannon
+ 956 Potential Cannon
+ 957 Warp Cannon
+ 958 Cld. Nova Cannon
+ 959 Null Cannon
+ 960 Cep. Plasma Driver
+ 961 Hyp. Alpha Cannon
+ 962 Zio. Alpha Cannon Mk. II
+ 963 Imp. Potential Cannon
+ 964 Cld. Directed Potential Cannon
+ 965 Multinova Projection Cannon
+ 966 Disintegrator
+ 967 Core Cannon
+ 968 Sigix Shearcannon
+ 969 Drained L-Cannon
+ 970 L-Cannon
+ 971 BFG-9k Vortex Edition
+ 972 Assault Rifle
+ 973 Asb. Rifle
+ 974 Lgt. Assault Rifle
+ 975 Bolt Gun
+ 976 Hvy. Assault Rifle
+ 977 Autogun
+ 978 Shotgun
+ 979 Battle Rifle
+ 980 Asb. Heavy Rifle
+ 981 Sub. Machine Gun
+ 982 Imp. Assault Rifle
+ 983 Minigun
+ 984 Hpw. Shotgun
+ 985 Asb. Shotgun
+ 986 Barrage Gun
+ 987 Ovr. Barrage Gun
+ 988 Enh. Autogun
+ 989 Gauss Rifle
+ 990 Asb. Gauss Rifle
+ 991 Flak Gun
+ 992 Prc. Assault Rifle
+ 993 Hvy. Battle Rifle
+ 994 Mak. Shrapnel Gun
+ 995 Coil Gun
+ 996 Hyp. Gauss Rifle
+ 997 Hvy. Machine Gun
+ 998 Imp. Heavy Machine Gun
+ 999 Com. Gauss Rifle
+1000 XL Autogun Subcomponent
+1001 KE Penetrator
+1002 Hyp. Coil Gun
+1003 Ovr. Coil Gun
+1004 Imp. KE Penetrator
+1005 Enh. Coil Gun
+1006 Com. Coil Gun
+1007 Railgun
+1008 Adv. KE Penetrator
+1009 Linked Autogun
+1010 AWS/Gauss
+1011 Hyp. Railgun
+1012 Ovr. Railgun
+1013 Helical Railgun
+1014 Com. Railgun
+1015 Kinetic Shotgun
+1016 XL Autogun Array
+1017 DW-4LL's Slamshotty
+1018 DW-4LL's Megashotty
+1019 6S-H0T's Six Shooter
+1020 12-ASH's Boomstick
+1021 8R-AWN's Boregun
+1022 Multirail
+1023 Hyp. Multirail
+1024 Cep. XC Strikerail
+1025 5H-AD0's Sniper Rifle
+1026 A3's Sniper Rifle
+1027 Lgt. Cannon
+1028 Imp. Light Cannon
+1029 Battle Cannon
+1030 Assault Cannon
+1031 Hvy. Assault Cannon
+1032 Flak Cannon
+1033 Adv. Assault Cannon
+1034 Gauss Cannon
+1035 Slug Cannon
+1036 Mni. Assault Cannon
+1037 Siege Cannon Replica
+1038 Magnetic Acceleration Cannon
+1039 Hvy. Flak Cannon
+1040 Bore Cannon
+1041 Antimatter Cannon
+1042 Siege Cannon
+1043 Mass Driver
+1044 Hvy. Mass Driver
+1045 Enh. Gauss Cannon
+1046 Hyp. Gauss Cannon
+1047 Ovr. Bore Cannon
+1048 Tri-rail Accelerator
+1049 Hardcell Cannon
+1050 Hvy. Gauss Cannon
+1051 Hyp. Mass Driver
+1052 Hvy. Autocannon
+1053 DAS Cannon
+1054 Lgt. Antimatter Cannon
+1055 Linear Accelerator
+1056 Hvy. Linear Accelerator
+1057 Ovr. Linear Accelerator
+1058 Com. Mass Driver
+1059 Hvy. Hardcell Cannon
+1060 Enh. Hardcell Cannon
+1061 Com. Linear Accelerator
+1062 Hyp. Linear Accelerator
+1063 Hcl. Linear Accelerator
+1064 Graviton Cannon
+1065 Blast Cannon
+1066 P1-3CE's Gatling Flakker
+1067 Hvy. Siege Cannon
+1068 AWS/Autocannon
+1069 Perforator
+1070 Cep. Miniperforator
+1071 Omega Cannon
+1072 Cep. Helical Railcannon
+1073 Cep. Heavy Railcannon
+1074 PL-3XN's Obliterator
+1075 EMP Blaster
+1076 Shock Bomb Launcher
+1077 Adv. EMP Blaster
+1078 Proton Missile Launcher
+1079 Imp. Proton Missile Launcher
+1080 Gui. EMP Blaster
+1081 Hvy. Shock Bomb Launcher
+1082 Tesla Bomb Launcher
+1083 Hvy. Proton Missile Launcher
+1084 Com. Tesla Bomb Launcher
+1085 Gamma Bomb Array
+1086 Enh. Gamma Bomb Array
+1087 Gamma Driveblaster
+1088 Cep. EMP Blanket Launcher
+1089 Grenade Launcher
+1090 Rocket Launcher
+1091 Mni. Grenade Launcher
+1092 Sub. Shrapnel Launcher
+1093 Imp. Grenade Launcher
+1094 Missile Launcher
+1095 Concussive RPG
+1096 YI-UF0's Doublenader
+1097 Hvy. Rocket Launcher
+1098 Hvy. Missile Launcher
+1099 Gui. Missile Launcher
+1100 Prc. Grenade Launcher
+1101 Rocket Array
+1102 Lrn. Missile Launcher
+1103 Imp. Concussive RPG
+1104 Prc. Rocket Launcher
+1105 Scatter Rocket Array
+1106 Smartbomb Launcher
+1107 Mni. Smartbomb Launcher
+1108 Tiamat Missile Launcher
+1109 Thermoblaster
+1110 Micro-nuke Launcher
+1111 Adv. Concussive RPG
+1112 Zip Rocket
+1113 Neutron Missile Launcher
+1114 Fusion Bomb Launcher
+1115 Hellfire Missile Launcher
+1116 Adv. Micro-nuke Launcher
+1117 Tactical Quantum Warhead
+1118 Vortex Catalyst Activator
+1119 Chain Missile Launcher
+1120 Ragnarok Missile Launcher
+1121 Cep. Rapid Grenade Launcher
+1122 Point Singularity Launcher
+1123 Gui. Micro-nuke Launcher
+1124 Cep. Concussive Dispersal Blaster
+1125 99-TNT's Nukerbomber
+1126 Exp. Neutron Missile Launcher
+1127 Cep. Arcsight Missile Launcher
+1128 Cep. Tactical Fusion Warhead
+1129 Cep. Tiamat Rocket Array
+1130 Z-bomb Delivery System
+1131 Cep. Smart ZDS
+1132 Sigix Terminator
+1133 Supercharged Sigix Terminator
+1134 Containment Facilitator
+1135 Detonator
+1136 Dirty Datajack
+1137 Splice Injector
+1138 Master Link
+1139 Datajack
+1140 Imp. Datajack
+1141 Adv. Datajack
+1142 Remote Datajack
+1143 Imp. Remote Datajack
+1144 Adv. Remote Datajack
+1145 Exp. Remote Datajack
+1146 Gui. Remote Datajack
+1147 ME-RLN's Wand
+1148 System Spiker
+1149 Field Lobotomy Kit
+1150 Mining Laser
+1151 Mak. Laser Shovel
+1152 LU-1G1's Laser Shovel
+1153 Welding Torch
+1154 Plasma Cutter
+1155 Imp. Plasma Cutter
+1156 Exp. Plasma Cutter
+1157 CPS Tube
+1158 Multitool
+1159 Flamer
+1160 Asb. F-torch
+1161 Enh. Flamer
+1162 Plasma Flamer
+1163 Asb. P-torch
+1164 RU-N14's Throwing Claymores
+1165 RU-N14's Throwing Claymores v3
+1166 Warlord Statue
+1167 Voltaic Drivehammer
+1168 AD-0RF's Magmablaster
+1169 IN-MT5's Pitchfork "Insurrection"
+1170 Shield Trident
+1171 Junk Cannon
+1172 Hammerchucker
+1173 Stasis Beam
+1174 Stasis Projector
+1175 Exp. Stasis Projector
+1176 Molecular Deconstructor
+1177 SE_WE1
+1178 SE_WE2
+1179 SE_WE3
+1180 SE_WE4
+1181 SE_WE5
+1182 Hammer
+1183 Mace
+1184 Flail
+1185 Maul
+1186 Asb. Maul
+1187 Hvy. Hammer
+1188 Hvy. Mace
+1189 Hvy. Flail
+1190 Great Maul
+1191 Powered Hammer
+1192 Mak. Hammer
+1193 Power Maul
+1194 Asb. P-maul
+1195 Impact Mace
+1196 Shock Maul
+1197 Thunder Hammer
+1198 Compactor
+1199 Gravity Flail
+1200 CL-ANK's Mallet
+1201 Cep. Blasthammer
+1202 Core Stripper
+1203 Mining Claw
+1204 EC_1
+1205 Katana
+1206 Asb. Blade
+1207 Scythe
+1208 Axe
+1209 Blade Saw
+1210 EC_3
+1211 Chainsword
+1212 Ripper
+1213 Mak. Axe
+1214 Mak. Sword
+1215 Great Axe
+1216 Greatsword
+1217 Ripteeth
+1218 Power Sword
+1219 Asb. P-sword
+1220 Falx
+1221 Carbide Saw
+1222 Segregator
+1223 Tearclaws
+1224 Companion Sword
+1225 EC_5
+1226 Phasing Sabre
+1227 Plasma Sword
+1228 Ionic Axe
+1229 Mni. Tearclaws
+1230 Vmp. Broadsword
+1231 Dual-blade Saw
+1232 Vibroblade
+1233 Molecular Scythe
+1234 Centrium Greatsword
+1235 Master Tearclaws
+1236 Longsword +1
+1237 EC_7
+1238 Nanosword
+1239 Particle Cleaver
+1240 Centrium Claws
+1241 1C-UTU's Sword "Lootmaker"
+1242 DM-GVY's Chainsaw
+1243 Vortex Shredder
+1244 EC_9
+1245 Exp. Terror Saw
+1246 1C-UTU's Sword "Choppy"
+1247 Cep. Deflector Sword
+1248 Quantum Companion
+1249 Superquantum Companion
+1250 Quantum Blade
+1251 Sigix Broadsword
+1252 Spear
+1253 Mak. Spear
+1254 CR-A16's Pointy Stick
+1255 Hvy. Pick
+1256 Lance
+1257 Kinetic Spear
+1258 Force Lance
+1259 Plasma Lance
+1260 Enh. Force Lance
+1261 Vortex Lance
+1262 CR-A16's Behemoth Slayer
+1263 Exp. Jetlance
+1264 Thermal Lance
+1265 Blade Trap
+1266 Segregator Trap
+1267 Explosive Trap
+1268 Heavy Explosive Trap
+1269 Tiamat Bomb Trap
+1270 Fusion Bomb Trap
+1271 Hellfire Trap
+1272 Armageddon Trap
+1273 Dirty Bomb Trap
+1274 EMP Trap
+1275 Proton Bomb Trap
+1276 Tesla Bomb Trap
+1277 Gamma Bomb Trap
+1278 Shrapnel Trap
+1279 Vortex Trap
+1280 Piercing Trap
+1281 Shock Trap
+1282 EM Surge Trap
+1283 Fire Trap
+1284 Heat Bomb Trap
+1285 Stasis Trap
+1286 Scrap Shield Fragment
+1287 SUBCON Basin
+1288 Signal Generator
+1289 Self-destruct Interrupter
+1290 DRS Beacon
+1291 Sapper Charge
+1292 Deploy-a-Sentry
+1293 Botcube
+1294 Lrg. Botcube
+1295 PL-3XN's Ring of Power
+1296 Disassembled Obliterator
+1297 GAL Module
+1298 6S-H0T's SS Cartridge
+1299 Portable AFG
+1300 UFD Drillbomb
+1301 Zhirov Special
+1302 SGEMP Prototype
+1303 Terrabomb Derivative
+1304 Sigix Containment Pod
+1305 Sigix Corpse
+1306 Meganuke
+1307 Gamma Refractor
