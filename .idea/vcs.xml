@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SDL-1.2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cogmind-scoresheet-prerelease" vcs="Git" />
   </component>
 </project>

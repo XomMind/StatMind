@@ -1,7 +1,8 @@
 use crate::generated::{CellId, EntityId, ItemId, PropId};
+use serde::Serialize;
 use std::mem;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
 #[repr(i32)]
 pub enum MapType {
     MapNone = 0,
@@ -115,7 +116,7 @@ impl TryFrom<i32> for MapType {
 }
 
 #[repr(C)]
-#[derive(Debug)]
+#[derive(Debug, Serialize, Copy, Clone)]
 pub struct LuigiMachineHacking {
     pub action_ready: i32,
     pub detect_chance: i32,
@@ -131,7 +132,7 @@ impl From<&Vec<u8>> for LuigiMachineHacking {
 }
 
 #[repr(C)]
-#[derive(Debug)]
+#[derive(Debug, Serialize, Copy, Clone )]
 pub struct LuigiProp {
     pub id: PropId,
     pub interactive_piece: bool,
@@ -145,7 +146,7 @@ impl From<&Vec<u8>> for LuigiProp {
 }
 
 #[repr(C)]
-#[derive(Debug)]
+#[derive(Debug, Serialize, Copy, Clone)]
 pub struct LuigiItem {
     pub id: ItemId,
     pub integrity: i32,
@@ -159,7 +160,7 @@ impl From<&Vec<u8>> for LuigiItem {
 }
 
 #[repr(C)]
-#[derive(Debug)]
+#[derive(Debug, Serialize, Copy, Clone)]
 pub struct LuigiEntity {
     pub id: EntityId,
     pub integrity: i32,
@@ -183,7 +184,7 @@ impl From<&Vec<u8>> for LuigiEntity {
 }
 
 #[repr(C)]
-#[derive(Debug)]
+#[derive(Debug, Serialize, Copy, Clone)]
 pub struct LuigiTile {
     pub last_action: i32,
     pub last_fov: i32,
@@ -202,7 +203,7 @@ impl From<&Vec<u8>> for LuigiTile {
 }
 
 #[repr(C)]
-#[derive(Debug)]
+#[derive(Debug, Serialize, Copy, Clone)]
 pub struct LuigiAi {
     pub magic1: i32,
     pub magic2: i32,

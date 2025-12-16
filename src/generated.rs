@@ -1,4 +1,5 @@
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+use serde::{Deserialize, Serialize};
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[allow(non_camel_case_types)]
 #[repr(i32)]
 pub enum ItemId {
@@ -5273,10 +5274,11 @@ impl std::fmt::Display for ItemId {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[allow(non_camel_case_types)]
 #[repr(i32)]
 pub enum CellId {
+    NO_CELL = -1,
     EARTH,
     EARTH_EXC,
     GROUND,
@@ -5846,6 +5848,7 @@ impl CellId {
 
     pub fn id(&self) -> i32 {
         match self {
+            Self::NO_CELL => -1,
             Self::EARTH => 0,
             Self::EARTH_EXC => 1,
             Self::GROUND => 2,
@@ -6130,6 +6133,7 @@ impl CellId {
 
     pub fn name(&self) -> &'static str {
         match self {
+            Self::NO_CELL => r#"NO_CELL"#,
             Self::EARTH => r#"EARTH"#,
             Self::EARTH_EXC => r#"EARTH_EXC"#,
             Self::GROUND => r#"GROUND"#,
@@ -6432,7 +6436,7 @@ impl std::fmt::Display for CellId {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[allow(non_camel_case_types)]
 #[repr(i32)]
 pub enum EntityId {
@@ -7779,7 +7783,7 @@ impl std::fmt::Display for EntityId {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[allow(non_camel_case_types)]
 #[repr(i32)]
 pub enum PropId {

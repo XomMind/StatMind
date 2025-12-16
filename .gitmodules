@@ -1,3 +1,7 @@
 [submodule "cogmind-scoresheet-prerelease"]
 	path = cogmind-scoresheet-prerelease
 	url = https://github.com/Kyzrati/cogmind-scoresheet-prerelease
+[submodule "SDL-1.2"]
+	path = SDL-1.2
+	url = https://github.com/aronson/SDL-1.2
+	branch = cogmind-next-gen

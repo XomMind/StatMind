@@ -1,23 +1,36 @@
 #[macro_use]
 extern crate log;
 
+mod common;
 mod discord;
 mod generated;
+mod mcp;
 mod types;
 
 use crate::discord::PresenceProvider;
-use crate::types::{LuigiAi, MapType};
+use crate::mcp::McpServer;
+use crate::types::MapType;
 use anyhow::{anyhow, Error};
+use clap::Parser;
 use discord_rich_presence::DiscordIpc;
 use env_logger::Env;
-use read_process_memory::copy_address;
-use read_process_memory::{Pid, ProcessHandle};
-#[cfg(target_os = "macos")]
-use security_framework::authorization::{Authorization, AuthorizationItemSetBuilder, Flags};
-use std::{mem, thread, time};
+use process_memory::{Architecture, ProcessHandle};
+use std::{io::{self, Write}, thread, time};
 use sysinfo::{ProcessesToUpdate, System};
 
+#[cfg(target_os = "macos")]
+use mach::traps::{mach_task_self, task_for_pid};
+
+#[derive(Parser)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    #[arg(long)]
+    mcp: bool,
+}
+
 fn main() -> anyhow::Result<()> {
+    let args = Args::parse();
+
     // Init logger
     let env = Env::default()
         .filter_or("MY_LOG_LEVEL", "info")
@@ -26,7 +39,7 @@ fn main() -> anyhow::Result<()> {
 
     // Get debug introspection (taskport) right on macOS
     #[cfg(target_os = "macos")]
-    acquire_taskport_right()?;
+    common::acquire_taskport_right()?;
 
     // Create a new System object and refresh process list
     let mut sys = System::new_all();
@@ -65,26 +78,62 @@ fn main() -> anyhow::Result<()> {
 
     if let Some(process) = process {
         debug!("Opening handle to process...");
-        // Get a handle to the process
-        let pid = process.pid().as_u32() as Pid;
-        let handle: ProcessHandle = (pid).try_into()?;
-
-        let mut presence = PresenceProvider::try_init()?;
-
-        loop {
-            debug!("Reading Cogmind process memory...");
-            let map_string = get_luigi_map(&handle)?;
-            let result = presence
-                .client
-                .set_activity(presence.activity.clone().state(&map_string));
-            match result {
-                Ok(_) => {
-                    info!("State updated! {}", map_string);
-                    thread::sleep(time::Duration::from_secs(60));
+        let pid = process.pid().as_u32() as i32;
+        
+        #[cfg(target_os = "macos")]
+        let task_port = {
+            use mach::kern_return::KERN_SUCCESS;
+            let mut port: mach::port::mach_port_name_t = 0;
+            unsafe {
+                let res = task_for_pid(mach_task_self(), pid, &mut port);
+                if res != KERN_SUCCESS {
+                    eprintln!("Failed to get task port for PID {}: {}", pid, res);
+                    io::stderr().flush().unwrap();
+                    return Err(anyhow::anyhow!("Failed to get task port for PID {}: {}", pid, res));
                 }
-                Err(e) => {
-                    error!("Error updating state:\n{}", e);
-                    thread::sleep(time::Duration::from_secs(5));
+            }
+            port
+        };
+        #[cfg(not(target_os = "macos"))]
+        let task_port = pid as u32;
+
+        // Get a handle to the process
+        let handle: ProcessHandle = (task_port, Architecture::Arch32Bit);
+
+        #[cfg(target_os = "macos")]
+        if !common::check_ipc_thread_status(&handle)? {
+            eprintln!("Error: SDL IPC thread did not start correctly.");
+            std::process::exit(4);
+        }
+
+        if args.mcp {
+            info!("Starting MCP Server...");
+            let mut server = McpServer::new(handle);
+            if let Err(e) = server.initialize_mailbox_address() {
+                eprintln!("Error initializing mailbox: {}", e);
+                io::stderr().flush().unwrap();
+                std::process::exit(3);
+            }
+            info!("Started MCP Server...");
+            server.run()?;
+        } else {
+            let mut presence = PresenceProvider::try_init()?;
+
+            loop {
+                debug!("Reading Cogmind process memory...");
+                let map_string = get_luigi_map(&handle)?;
+                let result = presence
+                    .client
+                    .set_activity(presence.activity.clone().state(&map_string));
+                match result {
+                    Ok(_) => {
+                        info!("State updated! {}", map_string);
+                        thread::sleep(time::Duration::from_secs(60));
+                    }
+                    Err(e) => {
+                        error!("Error updating state:\n{}", e);
+                        thread::sleep(time::Duration::from_secs(5));
+                    }
                 }
             }
         }
@@ -149,56 +198,9 @@ fn get_presence(depth: i32, map_type: MapType) -> String {
     format!("Current map: {}/{}", depth, map)
 }
 
-fn get_base_address(handle: &ProcessHandle) -> anyhow::Result<usize, Error> {
-    let check_value = 0x64AD_FA4C;
-    let start_address = 0xC0_0000;
-    let end_address = 0xFFFF_FFFF; // Assuming a 32-bit address space for simplicity
-
-    // Iterate over each possible address starting from 0x40000
-    for address in (start_address..=end_address).step_by(mem::size_of::<u32>()) {
-        // Attempt to copy 4 bytes (size of u32) from the current address
-        match copy_address(address, mem::size_of::<u32>(), handle) {
-            Ok(bytes) if bytes.len() == mem::size_of::<u32>() => {
-                // Convert the bytes to an i32 using little-endian byte order
-                let val = i32::from_le_bytes(bytes.try_into().unwrap());
-
-                // Check if the value matches the check_value
-                if val == check_value {
-                    // If it matches, return the current address
-                    return Ok(address);
-                }
-            }
-            Ok(_) => {
-                // If we did not get exactly 4 bytes, continue to the next address
-                continue;
-            }
-            Err(e) => {
-                eprintln!("Error reading from address 0x{:X}: {}", address, e);
-                continue;
-            }
-        }
-    }
-
-    // If we reach this point, it means we did not find the check_value at any address
-    Err(anyhow!("Could not find base address"))
-}
-
 fn get_luigi_map(handle: &ProcessHandle) -> Result<String, Error> {
-    let bytes = copy_address(get_base_address(handle)?, mem::size_of::<LuigiAi>(), handle)?;
-    let val: LuigiAi = LuigiAi::from(&bytes);
+    let val = common::get_luigi_ai(handle)?;
     let map_type =
         MapType::try_from(val.location_map).map_err(|_e| anyhow!("Failed to convert map type!"))?;
     Ok(get_presence(val.location_depth, map_type))
-}
-
-#[cfg(target_os = "macos")]
-fn acquire_taskport_right() -> security_framework::base::Result<Authorization> {
-    let rights = AuthorizationItemSetBuilder::new()
-        .add_right("system.privilege.taskport")?
-        .build();
-    Authorization::new(
-        Some(rights),
-        None,
-        Flags::EXTEND_RIGHTS | Flags::INTERACTION_ALLOWED | Flags::PREAUTHORIZE,
-    )
 }
