@@ -1,10 +1,14 @@
 #[macro_use]
 extern crate log;
 
+mod blit;
+mod cells;
 mod common;
 mod discord;
 mod generated;
 mod mcp;
+mod scan;
+mod scoresheet;
 mod types;
 
 use crate::discord::PresenceProvider;

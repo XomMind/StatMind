@@ -1,4 +1,3 @@
-use crate::generated::{CellId, EntityId, ItemId, PropId};
 use serde::Serialize;
 use std::mem;
 
@@ -134,7 +133,7 @@ impl From<&Vec<u8>> for LuigiMachineHacking {
 #[repr(C)]
 #[derive(Debug, Serialize, Copy, Clone )]
 pub struct LuigiProp {
-    pub id: PropId,
+    pub id: i32,
     pub interactive_piece: bool,
 }
 impl From<&Vec<u8>> for LuigiProp {
@@ -148,7 +147,7 @@ impl From<&Vec<u8>> for LuigiProp {
 #[repr(C)]
 #[derive(Debug, Serialize, Copy, Clone)]
 pub struct LuigiItem {
-    pub id: ItemId,
+    pub id: i32,
     pub integrity: i32,
 }
 impl From<&Vec<u8>> for LuigiItem {
@@ -162,7 +161,7 @@ impl From<&Vec<u8>> for LuigiItem {
 #[repr(C)]
 #[derive(Debug, Serialize, Copy, Clone)]
 pub struct LuigiEntity {
-    pub id: EntityId,
+    pub id: i32,
     pub integrity: i32,
     pub relation: i32,
     pub active_state: i32,
@@ -188,7 +187,7 @@ impl From<&Vec<u8>> for LuigiEntity {
 pub struct LuigiTile {
     pub last_action: i32,
     pub last_fov: i32,
-    pub cell: CellId,
+    pub cell: i32,
     pub door_open: bool,
     pub prop: u32,
     pub entity: u32,
