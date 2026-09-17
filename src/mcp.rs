@@ -1,9 +1,10 @@
 use crate::blit;
 use crate::cells;
-use crate::scan;
-use crate::scoresheet;
 use crate::common::{get_luigi_ai, get_mailbox_address, set_memory_writable, write_memory};
 use crate::generated::{CellId, EntityId, ItemId, PropId};
+use crate::get_presence;
+use crate::scan;
+use crate::scoresheet;
 use crate::types::{LuigiEntity, LuigiItem, LuigiMachineHacking, LuigiProp, LuigiTile, MapType};
 use anyhow::{anyhow, Result};
 use process_memory::{copy_address, ProcessHandle};
@@ -13,7 +14,6 @@ use std::io::{self, BufRead, Write};
 use std::mem;
 use std::thread;
 use std::time::Duration;
-use crate::get_presence;
 
 pub struct McpServer {
     handle: ProcessHandle,
@@ -28,7 +28,8 @@ pub struct McpServer {
 
 #[derive(Deserialize)]
 struct JsonRpcRequest {
-    jsonrpc: String,
+    #[serde(rename = "jsonrpc")]
+    _jsonrpc: String,
     method: String,
     params: Option<Value>,
     id: Option<Value>,
@@ -70,14 +71,28 @@ const KMOD_LALT: u16 = 0x0100;
 const SDLK_KP0: u16 = 256;
 
 enum MailboxCmd {
-    Key { keysym: u16, mods: u16, unicode: u16, repeat: u16 },
+    Key {
+        keysym: u16,
+        mods: u16,
+        unicode: u16,
+        repeat: u16,
+    },
     Text(String),
-    MouseMove { x: i32, y: i32 },
-    MouseClick { x: i32, y: i32, button: u8 },
+    MouseMove {
+        x: i32,
+        y: i32,
+    },
+    MouseClick {
+        x: i32,
+        y: i32,
+        button: u8,
+    },
     /// Ask the shim to call Cogmind's own scoresheet writer on the game's
     /// main thread. `budget_ms` bounds how long the shim waits for a frame
     /// boundary before giving up.
-    Dump { budget_ms: u16 },
+    Dump {
+        budget_ms: u16,
+    },
 }
 
 #[derive(Serialize)]
@@ -262,26 +277,25 @@ impl McpServer {
                     };
                     cells::read_map(&self.handle, bbox).map(|m| json!(m))
                 } else if params.name == "luigi_raw" {
-                    get_luigi_ai(&self.handle)
-                        .map(|v| {
-                            json!({
-                                "base_addr": format!("0x{:08X}", cells::LUIGI_AI_ADDR),
-                                "magic1_ok": v.magic1 == 1689123404u32 as i32,
-                                "magic2_ok": v.magic2 == 2035498713u32 as i32,
-                                "action_ready": v.action_ready,
-                                "map_width": v.map_width,
-                                "map_height": v.map_height,
-                                "location_depth": v.location_depth,
-                                "location_map": v.location_map,
-                                "map_data": format!("0x{:08X}", v.map_data),
-                                "map_cursor_index": v.map_cursor_index,
-                                "player": format!("0x{:08X}", v.player),
-                                "machine_hacking": format!("0x{:08X}", v.machine_hacking),
-                                "note": "player/mapData are NULL until a map loads. mapData stays \
-                                         empty even then on b17.1 (mirror is stubbed); terrain \
-                                         comes from get_map."
-                            })
+                    get_luigi_ai(&self.handle).map(|v| {
+                        json!({
+                            "base_addr": format!("0x{:08X}", crate::common::get_addrs(&self.handle).map(|a| a.luigi).unwrap_or(0)),
+                            "magic1_ok": v.magic1 == 1689123404u32 as i32,
+                            "magic2_ok": v.magic2 == 2035498713u32 as i32,
+                            "action_ready": v.action_ready,
+                            "map_width": v.map_width,
+                            "map_height": v.map_height,
+                            "location_depth": v.location_depth,
+                            "location_map": v.location_map,
+                            "map_data": format!("0x{:08X}", v.map_data),
+                            "map_cursor_index": v.map_cursor_index,
+                            "player": format!("0x{:08X}", v.player),
+                            "machine_hacking": format!("0x{:08X}", v.machine_hacking),
+                            "note": "player/mapData are NULL until a map loads. mapData stays \
+                                     empty even then on b17.1 (mirror is stubbed); terrain \
+                                     comes from get_map."
                         })
+                    })
                 } else if params.name == "dump_status" || params.name == "stat_dump" {
                     let found = match self.scoresheet_addr {
                         Some(a) => Ok(a),
@@ -389,7 +403,11 @@ impl McpServer {
                                     let mut hud = 0u32;
                                     for d in &ds {
                                         let (gx, gy) = blit::screen_to_game(
-                                            d.dx as i32, d.dy as i32, vo.x, vo.y);
+                                            d.dx as i32,
+                                            d.dy as i32,
+                                            vo.x,
+                                            vo.y,
+                                        );
                                         if gx >= 0 && gy >= 0 && gx < mw && gy < mh {
                                             *cells.entry((gx, gy)).or_insert(0) += 1;
                                         } else {
@@ -412,9 +430,10 @@ impl McpServer {
                         }
                         (Ok(a), "blit_frame") => {
                             let lim = argi("limit", 16384).clamp(1, 16384) as usize;
-                            blit::read_draws(&self.handle, a, lim)
-                                .map(|(f, n, r)| json!({"frame": f, "count": n,
-                                                        "returned": r.len(), "draws": r}))
+                            blit::read_draws(&self.handle, a, lim).map(|(f, n, r)| {
+                                json!({"frame": f, "count": n,
+                                                        "returned": r.len(), "draws": r})
+                            })
                         }
                         (Ok(_), other) => Err(anyhow!("unknown blit tool: {}", other)),
                     }
@@ -424,8 +443,10 @@ impl McpServer {
                     let integ = argi("integrity", -1) as i32;
                     let matter = argi("matter", -1) as i32;
                     if integ < 0 || matter < 0 {
-                        Err(anyhow!("find_stats: `integrity` and `matter` are required (read them \
-                                     off the HUD; both carry across maps)"))
+                        Err(anyhow!(
+                            "find_stats: `integrity` and `matter` are required (read them \
+                                     off the HUD; both carry across maps)"
+                        ))
                     } else {
                         cells::find_stats(&self.handle, integ, matter).map(|v| json!({
                             "matches": v.len(),
@@ -435,15 +456,22 @@ impl McpServer {
                         }))
                     }
                 } else if params.name == "stats" {
-                    let base = args.get("base").and_then(|v| v.as_str())
+                    let base = args
+                        .get("base")
+                        .and_then(|v| v.as_str())
                         .and_then(|s| usize::from_str_radix(s.trim_start_matches("0x"), 16).ok())
                         .ok_or_else(|| anyhow!("stats: `base` required as \"0x...\""));
-                    match base { Err(e) => Err(e),
-                                 Ok(b) => cells::read_stats(&self.handle, b).map(|s| json!(s)) }
+                    match base {
+                        Err(e) => Err(e),
+                        Ok(b) => cells::read_stats(&self.handle, b).map(|s| json!(s)),
+                    }
                 } else if params.name == "map_header" {
                     cells::read_header(&self.handle).map(|(w, h, c)| {
+                        let a = crate::common::get_addrs(&self.handle).ok();
                         json!({
-                            "map_obj": format!("0x{:08X}", cells::MAP_OBJ),
+                            "build": format!("0x{:08X}", a.map_or(0, |a| a.build_stamp)),
+                            "map_obj": format!("0x{:08X}", a.map_or(0, |a| a.map_object)),
+                            "player_rec_known": a.is_some_and(|a| a.player_rec.is_some()),
                             "width": w, "height": h,
                             "cells_base": format!("0x{:08X}", c)
                         })
@@ -464,7 +492,8 @@ impl McpServer {
                 } else if params.name == "scan_filter" {
                     let v = argi("value", 0) as i32;
                     let before = self.scan_candidates.len();
-                    self.scan_candidates = scan::scan_filter(&self.handle, &self.scan_candidates, v);
+                    self.scan_candidates =
+                        scan::scan_filter(&self.handle, &self.scan_candidates, v);
                     Ok(json!({
                         "value": v,
                         "before": before,
@@ -487,17 +516,23 @@ impl McpServer {
                             .collect::<Vec<_>>()
                     }))
                 } else if params.name == "scan_ptr_to" {
-                    let hex = |k: &str| args.get(k).and_then(|v| v.as_str())
-                        .and_then(|s| u32::from_str_radix(s.trim_start_matches("0x"), 16).ok())
-                        .or_else(|| args.get(k).and_then(|v| v.as_i64()).map(|v| v as u32));
+                    let hex = |k: &str| {
+                        args.get(k)
+                            .and_then(|v| v.as_str())
+                            .and_then(|s| u32::from_str_radix(s.trim_start_matches("0x"), 16).ok())
+                            .or_else(|| args.get(k).and_then(|v| v.as_i64()).map(|v| v as u32))
+                    };
                     match (hex("lo"), hex("hi")) {
-                        (Some(lo), Some(hi)) if hi >= lo => {
-                            scan::scan_ptr_to(&self.handle, lo, hi).map(|hits| {
-                                let statics: Vec<_> = hits.iter()
+                        (Some(lo), Some(hi)) if hi >= lo => scan::scan_ptr_to(&self.handle, lo, hi)
+                            .map(|hits| {
+                                let statics: Vec<_> = hits
+                                    .iter()
                                     .filter(|(a, _)| *a >= 0x0040_0000 && *a <= 0x0100_0000)
                                     .take(40)
-                                    .map(|(a, v)| json!({"at": format!("0x{:08X}", a),
-                                                         "points_to": format!("0x{:08X}", v)}))
+                                    .map(|(a, v)| {
+                                        json!({"at": format!("0x{:08X}", a),
+                                                         "points_to": format!("0x{:08X}", v)})
+                                    })
                                     .collect();
                                 json!({
                                     "range": [format!("0x{:08X}", lo), format!("0x{:08X}", hi)],
@@ -508,19 +543,28 @@ impl McpServer {
                                                              "points_to": format!("0x{:08X}", v)}))
                                         .collect::<Vec<_>>()
                                 })
-                            })
-                        }
+                            }),
                         _ => Err(anyhow!("scan_ptr_to: need `lo` and `hi` with hi >= lo")),
                     }
                 } else if params.name == "scan_context" {
-                    let vals: Vec<i32> = args.get("values").and_then(|v| v.as_array())
-                        .map(|a| a.iter().filter_map(|x| x.as_i64()).map(|x| x as i32).collect())
+                    let vals: Vec<i32> = args
+                        .get("values")
+                        .and_then(|v| v.as_array())
+                        .map(|a| {
+                            a.iter()
+                                .filter_map(|x| x.as_i64())
+                                .map(|x| x as i32)
+                                .collect()
+                        })
                         .unwrap_or_default();
                     if vals.is_empty() {
-                        Err(anyhow!("scan_context: `values` must be a non-empty array of ints"))
+                        Err(anyhow!(
+                            "scan_context: `values` must be a non-empty array of ints"
+                        ))
                     } else {
                         let win = argi("window", 128).clamp(8, 4096) as usize;
-                        let hits = scan::scan_context(&self.handle, &self.scan_candidates, &vals, win);
+                        let hits =
+                            scan::scan_context(&self.handle, &self.scan_candidates, &vals, win);
                         let before = self.scan_candidates.len();
                         self.scan_candidates = hits.iter().map(|(a, _)| *a).collect();
                         Ok(json!({
@@ -536,9 +580,15 @@ impl McpServer {
                         }))
                     }
                 } else if params.name == "read_window" {
-                    let addr = args.get("addr").and_then(|v| v.as_str())
+                    let addr = args
+                        .get("addr")
+                        .and_then(|v| v.as_str())
                         .and_then(|s| usize::from_str_radix(s.trim_start_matches("0x"), 16).ok())
-                        .or_else(|| args.get("addr").and_then(|v| v.as_i64()).map(|v| v as usize))
+                        .or_else(|| {
+                            args.get("addr")
+                                .and_then(|v| v.as_i64())
+                                .map(|v| v as usize)
+                        })
                         .ok_or_else(|| anyhow!("read_window: `addr` required (int or \"0x...\")"));
                     match addr {
                         Err(e) => Err(e),
@@ -921,7 +971,10 @@ impl McpServer {
             action_ready: luigi_ai.action_ready,
             map_width: luigi_ai.map_width,
             map_height: luigi_ai.map_height,
-            location: get_presence(luigi_ai.location_depth, MapType::try_from(luigi_ai.location_map).unwrap_or(MapType::MapNone)),
+            location: get_presence(
+                luigi_ai.location_depth,
+                MapType::try_from(luigi_ai.location_map).unwrap_or(MapType::MapNone),
+            ),
             map_cursor_index: luigi_ai.map_cursor_index,
             player_x,
             player_y,
@@ -1058,8 +1111,18 @@ impl McpServer {
                 button: i("button", 1).clamp(1, 5) as u8,
             }),
             // Retained for compatibility with the v1 tool names.
-            "attach" => self.submit(MailboxCmd::Key { keysym: b'a' as u16, mods: 0, unicode: b'a' as u16, repeat: 1 }),
-            "fire" => self.submit(MailboxCmd::Key { keysym: b'f' as u16, mods: 0, unicode: b'f' as u16, repeat: 1 }),
+            "attach" => self.submit(MailboxCmd::Key {
+                keysym: b'a' as u16,
+                mods: 0,
+                unicode: b'a' as u16,
+                repeat: 1,
+            }),
+            "fire" => self.submit(MailboxCmd::Key {
+                keysym: b'f' as u16,
+                mods: 0,
+                unicode: b'f' as u16,
+                repeat: 1,
+            }),
             _ => Err(anyhow!("Unknown tool: {}", name)),
         }
     }
@@ -1099,15 +1162,29 @@ impl McpServer {
                 .try_into()
                 .map_err(|_| anyhow!("short read of mailbox seq"))?,
         );
-        let action_before = get_luigi_ai(&self.handle).map(|v| v.action_ready).unwrap_or(-1);
+        let action_before = get_luigi_ai(&self.handle)
+            .map(|v| v.action_ready)
+            .unwrap_or(-1);
 
         // Zero the variable payload so a previous command cannot leak through.
-        write_memory(&self.handle, addr + MB_COMMAND, &[0u8; MB_SIZE - MB_COMMAND])?;
+        write_memory(
+            &self.handle,
+            addr + MB_COMMAND,
+            &[0u8; MB_SIZE - MB_COMMAND],
+        )?;
 
         let label;
         match cmd {
-            MailboxCmd::Key { keysym, mods, unicode, repeat } => {
-                label = format!("key sym={} mods=0x{:04x} uni={} x{}", keysym, mods, unicode, repeat);
+            MailboxCmd::Key {
+                keysym,
+                mods,
+                unicode,
+                repeat,
+            } => {
+                label = format!(
+                    "key sym={} mods=0x{:04x} uni={} x{}",
+                    keysym, mods, unicode, repeat
+                );
                 write_memory(&self.handle, addr + MB_KEYSYM, &keysym.to_le_bytes())?;
                 write_memory(&self.handle, addr + MB_MODIFIERS, &mods.to_le_bytes())?;
                 write_memory(&self.handle, addr + MB_UNICODE, &unicode.to_le_bytes())?;
@@ -1120,7 +1197,11 @@ impl McpServer {
                 let mut buf = [0u8; MB_TEXT_MAX];
                 buf[..bytes.len()].copy_from_slice(bytes);
                 write_memory(&self.handle, addr + MB_TEXT, &buf)?;
-                write_memory(&self.handle, addr + MB_TEXT_LEN, &(bytes.len() as u16).to_le_bytes())?;
+                write_memory(
+                    &self.handle,
+                    addr + MB_TEXT_LEN,
+                    &(bytes.len() as u16).to_le_bytes(),
+                )?;
                 write_memory(&self.handle, addr + MB_COMMAND, &[b'T'])?;
             }
             MailboxCmd::MouseMove { x, y } => {
@@ -1184,7 +1265,11 @@ impl McpServer {
                 .map_err(|_| anyhow!("short read of mailbox status"))?,
         );
         if status < 0 {
-            return Err(anyhow!("{}: shim rejected the command (status {})", label, status));
+            return Err(anyhow!(
+                "{}: shim rejected the command (status {})",
+                label,
+                status
+            ));
         }
 
         // A dump advances no turn and is complete once acked; waiting on

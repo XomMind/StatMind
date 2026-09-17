@@ -48,15 +48,11 @@ use process_memory::{copy_address, ProcessHandle};
 use serde::Serialize;
 use std::collections::HashMap;
 
-/// The `LuigiAi` instance. Confirmed empirically: StatMind's magic scan finds the
-/// struct at exactly this address in a running Beta 17.1 under Wine.
-pub const LUIGI_AI_ADDR: usize = 0x00CE_BFFC;
-
-/// `{ int width; int height; Cell** cells; }`
-pub const MAP_OBJ: usize = 0x00CF_D44C;
-pub const MAP_WIDTH: usize = MAP_OBJ; // +0x00
-pub const MAP_HEIGHT: usize = MAP_OBJ + 0x04;
-pub const MAP_CELLS: usize = MAP_OBJ + 0x08;
+/// Field offsets in the map object `{ int width; int height; Cell** cells; }`.
+/// Its address is per build and comes from `common::get_addrs`.
+pub const MAP_WIDTH: usize = 0x00;
+pub const MAP_HEIGHT: usize = 0x04;
+pub const MAP_CELLS: usize = 0x08;
 
 // Cell member offsets.
 //
@@ -157,7 +153,8 @@ pub struct DirectMap {
 fn rd_i32(handle: &ProcessHandle, addr: usize) -> Result<i32> {
     let b = copy_address(addr, 4, handle)?;
     Ok(i32::from_le_bytes(
-        b.try_into().map_err(|_| anyhow!("short read at 0x{:X}", addr))?,
+        b.try_into()
+            .map_err(|_| anyhow!("short read at 0x{:X}", addr))?,
     ))
 }
 
@@ -167,9 +164,10 @@ fn rd_u32(handle: &ProcessHandle, addr: usize) -> Result<u32> {
 
 /// Read the map dimensions and the base of the `Cell*` table.
 pub fn read_header(handle: &ProcessHandle) -> Result<(i32, i32, u32)> {
-    let width = rd_i32(handle, MAP_WIDTH)?;
-    let height = rd_i32(handle, MAP_HEIGHT)?;
-    let cells = rd_u32(handle, MAP_CELLS)?;
+    let map_obj = crate::common::get_addrs(handle)?.map_object;
+    let width = rd_i32(handle, map_obj + MAP_WIDTH)?;
+    let height = rd_i32(handle, map_obj + MAP_HEIGHT)?;
+    let cells = rd_u32(handle, map_obj + MAP_CELLS)?;
 
     if width <= 0 || height <= 0 || width > MAX_DIM || height > MAX_DIM {
         return Err(anyhow!(
@@ -177,11 +175,14 @@ pub fn read_header(handle: &ProcessHandle) -> Result<(i32, i32, u32)> {
              address is wrong for this build",
             width,
             height,
-            MAP_OBJ
+            map_obj
         ));
     }
     if cells == 0 {
-        return Err(anyhow!("cell table pointer at 0x{:X} is null", MAP_CELLS));
+        return Err(anyhow!(
+            "cell table pointer at 0x{:X} is null",
+            map_obj + MAP_CELLS
+        ));
     }
     Ok((width, height, cells))
 }
@@ -192,10 +193,7 @@ pub fn read_header(handle: &ProcessHandle) -> Result<(i32, i32, u32)> {
 /// and cannot be batched. A full map is tens of thousands of reads, which is
 /// tolerable interactively and far too slow for training -- the fix there is to
 /// move the reader in-process, not to micro-optimise the mach round trips.
-pub fn read_map(
-    handle: &ProcessHandle,
-    bbox: Option<(i32, i32, i32, i32)>,
-) -> Result<DirectMap> {
+pub fn read_map(handle: &ProcessHandle, bbox: Option<(i32, i32, i32, i32)>) -> Result<DirectMap> {
     let (width, height, cells_base) = read_header(handle)?;
 
     let (x0, y0, x1, y1) = match bbox {
@@ -208,7 +206,13 @@ pub fn read_map(
         None => (0, 0, width - 1, height - 1),
     };
     if x0 > x1 || y0 > y1 {
-        return Err(anyhow!("empty bounding box ({},{})..({},{})", x0, y0, x1, y1));
+        return Err(anyhow!(
+            "empty bounding box ({},{})..({},{})",
+            x0,
+            y0,
+            x1,
+            y1
+        ));
     }
 
     // One bulk read of the pointer table for the columns we care about.
@@ -267,7 +271,7 @@ pub fn read_map(
                 cell_id,
                 cell_name: cell_id.and_then(CellId::from_id).map(|c| c.name()),
                 type_class,
-                    prop: word(CELL_PROP),
+                prop: word(CELL_PROP),
                 entity: word(CELL_ENTITY),
                 item_container: word(CELL_ITEM_CONTAINER),
             });
@@ -294,11 +298,12 @@ pub fn read_map(
 ///
 /// This is what `LuigiAi.player` should have pointed at, and is the replacement
 /// for it on Beta 17.1, where that field stays NULL forever.
-pub const PLAYER_REC: usize = 0x00D2_D338;
-pub const PLAYER_HANDLE: usize = PLAYER_REC; // +0x00, observed 0x00420000
-pub const PLAYER_X: usize = PLAYER_REC + 0x04;
-pub const PLAYER_Y: usize = PLAYER_REC + 0x08;
-pub const PLAYER_ENTITY_ID: usize = PLAYER_REC + 0x0C; // 322 == EntityId "Player"
+/// Field offsets in the player record. Its address is per build, comes from
+/// `common::get_addrs`, and is absent on a build where it has never been read.
+pub const PLAYER_HANDLE: usize = 0x00; // observed 0x00420000
+pub const PLAYER_X: usize = 0x04;
+pub const PLAYER_Y: usize = 0x08;
+pub const PLAYER_ENTITY_ID: usize = 0x0C; // 322 == EntityId "Player"
 
 #[derive(Serialize, Debug)]
 pub struct PlayerRec {
@@ -314,17 +319,24 @@ pub struct PlayerRec {
 /// Read the player record. `plausible` is a sanity gate: the handle must be
 /// non-zero and the coordinates inside the current map.
 pub fn read_player(handle: &ProcessHandle) -> Result<PlayerRec> {
-    let h = rd_u32(handle, PLAYER_HANDLE)?;
-    let x = rd_i32(handle, PLAYER_X)?;
-    let y = rd_i32(handle, PLAYER_Y)?;
-    let id = rd_i32(handle, PLAYER_ENTITY_ID)?;
+    let rec = crate::common::get_addrs(handle)?.player_rec.ok_or_else(|| {
+        anyhow!(
+            "the player record has never been located on this build; it is \
+             zero-fill with no reference to pin it, so it has to be found by \
+             differential scan and added to statmind_build.h"
+        )
+    })?;
+    let h = rd_u32(handle, rec + PLAYER_HANDLE)?;
+    let x = rd_i32(handle, rec + PLAYER_X)?;
+    let y = rd_i32(handle, rec + PLAYER_Y)?;
+    let id = rd_i32(handle, rec + PLAYER_ENTITY_ID)?;
     let dims = read_header(handle).ok();
     let plausible = h != 0
         && dims
             .map(|(w, ht, _)| x >= 0 && y >= 0 && x < w && y < ht)
             .unwrap_or(false);
     Ok(PlayerRec {
-        addr: format!("0x{:08X}", PLAYER_REC),
+        addr: format!("0x{:08X}", rec),
         handle: h,
         x,
         y,
@@ -395,7 +407,9 @@ pub fn find_stats(handle: &ProcessHandle, integrity: i32, matter: i32) -> Result
             continue;
         }
         let base = a - STATS_MATTER;
-        let Ok(st) = read_stats(handle, base) else { continue };
+        let Ok(st) = read_stats(handle, base) else {
+            continue;
+        };
         // Integrity must match, and heat/corruption must be sane rather than
         // arbitrary bytes that happen to sit next to the right number.
         let sane = st.integrity == integrity
@@ -525,7 +539,13 @@ pub struct CellProbe {
 pub fn probe(handle: &ProcessHandle, x: i32, y: i32) -> Result<CellProbe> {
     let (width, height, cells_base) = read_header(handle)?;
     if x < 0 || y < 0 || x >= width || y >= height {
-        return Err(anyhow!("({},{}) is outside the {}x{} map", x, y, width, height));
+        return Err(anyhow!(
+            "({},{}) is outside the {}x{} map",
+            x,
+            y,
+            width,
+            height
+        ));
     }
 
     let index = (x as usize) * (height as usize) + (y as usize);
@@ -557,7 +577,11 @@ pub fn probe(handle: &ProcessHandle, x: i32, y: i32) -> Result<CellProbe> {
         type_ptr = word(CELL_TYPE);
         if type_ptr != 0 {
             if let Ok(tb) = copy_address(type_ptr as usize, 0x60, handle) {
-                type_raw_hex = tb.iter().map(|b| format!("{:02x}", b)).collect::<Vec<_>>().join(" ");
+                type_raw_hex = tb
+                    .iter()
+                    .map(|b| format!("{:02x}", b))
+                    .collect::<Vec<_>>()
+                    .join(" ");
             }
         }
         let pid = if type_ptr == 0 {

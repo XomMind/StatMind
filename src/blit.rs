@@ -35,9 +35,6 @@ pub const OFF_DRAWS: usize = 40;
 pub const DRAW_SIZE: usize = 20;
 pub const DRAW_MAX: usize = 16384;
 
-pub const KIND_BLIT: u16 = 0;
-pub const KIND_FILL: u16 = 1;
-
 /// Screen geometry, measured rather than assumed.
 ///
 /// A character occupies 24x24 pixels but is drawn as **two** 12x24 blits, left
@@ -64,7 +61,7 @@ pub const CELL_H: i32 = 24;
 ///
 /// One matching sample, so treat it as probable until it has been watched across
 /// a scroll. `view_origin_from_cursor` is the ground-truth fallback.
-pub const VIEW_ORIGIN: usize = 0x00CD_8FA4;
+// The view origin is per build; its address comes from `common::get_addrs`.
 
 #[derive(Serialize, Debug)]
 pub struct ViewOrigin {
@@ -75,10 +72,11 @@ pub struct ViewOrigin {
 }
 
 pub fn read_view_origin(handle: &ProcessHandle) -> Result<ViewOrigin> {
-    let x = rd_u32(handle, VIEW_ORIGIN)? as i32;
-    let y = rd_u32(handle, VIEW_ORIGIN + 4)? as i32;
+    let origin = crate::common::get_addrs(handle)?.view_origin;
+    let x = rd_u32(handle, origin)? as i32;
+    let y = rd_u32(handle, origin + 4)? as i32;
     Ok(ViewOrigin {
-        addr: format!("0x{:08X}", VIEW_ORIGIN),
+        addr: format!("0x{:08X}", origin),
         x,
         y,
         // A map is at most a few hundred cells on a side.
@@ -89,11 +87,6 @@ pub fn read_view_origin(handle: &ProcessHandle) -> Result<ViewOrigin> {
 /// Screen cell -> game coordinate, given the view origin.
 pub fn screen_to_game(dx: i32, dy: i32, ox: i32, oy: i32) -> (i32, i32) {
     (dx / CELL_W + ox, dy / CELL_H + oy)
-}
-
-/// Game coordinate -> top-left pixel of that cell.
-pub fn game_to_pixel(x: i32, y: i32, ox: i32, oy: i32) -> (i32, i32) {
-    ((x - ox) * CELL_W, (y - oy) * CELL_H)
 }
 
 #[derive(Serialize, Debug, Clone, Copy)]
@@ -128,7 +121,8 @@ pub struct BlitStatus {
 fn rd_u32(handle: &ProcessHandle, addr: usize) -> Result<u32> {
     let b = copy_address(addr, 4, handle)?;
     Ok(u32::from_le_bytes(
-        b.try_into().map_err(|_| anyhow!("short read at 0x{:X}", addr))?,
+        b.try_into()
+            .map_err(|_| anyhow!("short read at 0x{:X}", addr))?,
     ))
 }
 
@@ -136,7 +130,10 @@ fn rd_u32(handle: &ProcessHandle, addr: usize) -> Result<u32> {
 pub fn find(handle: &ProcessHandle) -> Result<usize> {
     let cands = scan::scan_new(handle, BLIT_MAGIC as i32)?;
     for a in cands {
-        if rd_u32(handle, a + 4).map(|v| v == BLIT_CHECK).unwrap_or(false) {
+        if rd_u32(handle, a + 4)
+            .map(|v| v == BLIT_CHECK)
+            .unwrap_or(false)
+        {
             return Ok(a);
         }
     }
@@ -161,11 +158,19 @@ pub fn status(handle: &ProcessHandle, base: usize) -> Result<BlitStatus> {
 }
 
 /// Read the accumulated draw list.
-pub fn read_draws(handle: &ProcessHandle, base: usize, limit: usize) -> Result<(u32, u32, Vec<Draw>)> {
+pub fn read_draws(
+    handle: &ProcessHandle,
+    base: usize,
+    limit: usize,
+) -> Result<(u32, u32, Vec<Draw>)> {
     let frame = rd_u32(handle, base + OFF_FRAME)?;
     let count = rd_u32(handle, base + OFF_COUNT)? as usize;
     if count > DRAW_MAX {
-        return Err(anyhow!("draw log count {} exceeds the {} cap", count, DRAW_MAX));
+        return Err(anyhow!(
+            "draw log count {} exceeds the {} cap",
+            count,
+            DRAW_MAX
+        ));
     }
     let want = count.min(limit);
     let mut out = Vec::with_capacity(want);
@@ -176,9 +181,19 @@ pub fn read_draws(handle: &ProcessHandle, base: usize, limit: usize) -> Result<(
             let s = |k: usize| i16::from_le_bytes([bytes[o + k], bytes[o + k + 1]]);
             let u = |k: usize| u16::from_le_bytes([bytes[o + k], bytes[o + k + 1]]);
             out.push(Draw {
-                dx: s(0), dy: s(2), w: s(4), h: s(6),
-                sx: s(8), sy: s(10), kind: u(12),
-                arg: u32::from_le_bytes([bytes[o+16], bytes[o+17], bytes[o+18], bytes[o+19]]),
+                dx: s(0),
+                dy: s(2),
+                w: s(4),
+                h: s(6),
+                sx: s(8),
+                sy: s(10),
+                kind: u(12),
+                arg: u32::from_le_bytes([
+                    bytes[o + 16],
+                    bytes[o + 17],
+                    bytes[o + 18],
+                    bytes[o + 19],
+                ]),
             });
         }
     }
