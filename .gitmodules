@@ -1,4 +1,4 @@
 [submodule "SDL-1.2"]
 	path = SDL-1.2
-	url = https://github.com/aronson/SDL-1.2
-	branch = cogmind-next-gen
+	url = https://github.com/XomMind/SDL-1.2.git
+	branch = cogbench-shim
